@@ -17,7 +17,7 @@
 #if defined(IMGUI_IMPL_OPENGL_ES2)
 #include <GLES2/gl2.h>
 #endif
-#include <GLFW/glfw3.h> // Will drag system OpenGL headers
+#include <GLFW/glfw3.h> 
 
 #include "my headers/signature.h"
 #include "my headers/Offsets.h"
@@ -52,11 +52,10 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
                 while (1) {
                     csgo::loopHacks();
                     if (GetAsyncKeyState(0x39)) {
-                        DetourRemove((PBYTE)pEndScene, (PBYTE)hookedEndScene); //unhook to avoid game crash
+                        DetourRemove((PBYTE)pEndScene, (PBYTE)hookedEndScene);
                         break;
                     }
                 }
-                
             }
             if (!stablished){
                 printf("Unable to update offsets, wait for an update\n");
