@@ -22,6 +22,10 @@ bool stablishOffsets(){
 	offset::ForceJump = findpattern(true,true, (0x2ED64D-sub), 2, 0, clientmodule, "\x89\x0D\x00\x00\x00\x00\x8B\x0D\x00\x00\x00\x00\x8B\xF2\x8B\xC1\x83\xCE\x08\x24\x03\x8B\xC7\x0F\x44\xF2", "xx????xx????xxxxxxxxxxxxxx");
 	if (offset::ForceJump == errorCode) { return false; }
 
+
+	offset::ForceShoot = findpattern(true, true, (0x2ED5D5 - sub), 2, 0, clientmodule, "\x8B\x0D\x00\x00\x00\x00\x8B\xD6\x8B\xC1\x83\xCA\x01\x24\x03", "xx????xxxxxxxxx");
+	if (base::isMenuOpenBase == errorCode) { return false; }
+
 	base::isMenuOpenBase = findpattern(false, true, (0x47B448-sub), 1, 0, clientmodule, "\xA1\x00\x00\x00\x00\x32\xD2\xB9\x00\x00\x00\x00\x89\x55\xF8\x8B\x40\x74\xFF\xD0", "x????xxx????xxxxxxxx");
 	if (base::isMenuOpenBase == errorCode) { return false; }
 	

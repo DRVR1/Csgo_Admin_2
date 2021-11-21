@@ -55,7 +55,6 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
     if (hackbools::init) {
         HWND newhandler = FindWindowA(NULL, targetName);
         oWndProc = (WNDPROC)SetWindowLongPtr(newhandler, GWL_WNDPROC, (LONG_PTR)WndProc);
-        hackbools::init = false;
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -88,6 +87,8 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         ImGui::GetStyle().ScrollbarRounding = 0.0f;
 
         ImGui::SetNextWindowSize(ImVec2(500, 500));
+
+        hackbools::init = false;
 
 
     }

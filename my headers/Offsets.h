@@ -17,7 +17,7 @@ namespace offset {
 	DWORD EntityList = 0x4DC177C; //not in hazedumper hexa x mio es 0x4DBF764 
 	DWORD PlayerBase = 0xDA747C; // dwLocalPlayer dword
 	DWORD ForceJump = 0x526B590; //dwForceJump  byte 04||05
-	DWORD ForceShoot = 0x31F1C94;
+	DWORD ForceShoot = 0x31F1CB4;
 	
 
 	// + engine.dll
