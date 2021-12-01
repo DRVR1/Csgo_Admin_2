@@ -4,6 +4,8 @@
 
 
 namespace action {
+
+
     void radarHack() {
         base::entityList = (DWORD)pointer::entityListptr;
 

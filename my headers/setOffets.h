@@ -19,6 +19,7 @@ bool stablishOffsets(){
 	offset::PlayerBase = findpattern(true,true, (0x2AB709-sub), 3, 4, clientmodule, "\x8D\x34\x85\x00\x00\x00\x00\x89\x15\x00\x00\x00\x00\x8B\x41\x08\x8B\x48\x04\x83\xF9\xFF", "xxx????xx????xxxxxxxxx");
 	if (offset::PlayerBase == errorCode) { return false; }
 
+
 	offset::ForceJump = findpattern(true,true, (0x2ED64D-sub), 2, 0, clientmodule, "\x89\x0D\x00\x00\x00\x00\x8B\x0D\x00\x00\x00\x00\x8B\xF2\x8B\xC1\x83\xCE\x08\x24\x03\x8B\xC7\x0F\x44\xF2", "xx????xx????xxxxxxxxxxxxxx");
 	if (offset::ForceJump == errorCode) { return false; }
 
@@ -41,6 +42,7 @@ bool stablishOffsets(){
 	offset::flashbangHex = findpattern(false,true, (0x3AC4A3-sub), 4, 0, clientmodule, "\xF3\x0F\x10\x9E\x00\x00\x00\x00\x0F\x2F\xD3\x0F\x83\x00\x00\x00\x00\x80\xBE\x68\x04\x01\x00\x00\x0F\x28\xC1\xF3\x0F\x10\xB6\x00\x00\x00\x00\x0F\x28\xE5", "xxxx????xxxxx????xxxxxxxxxxxxxx????xxx");
 	if (offset::flashbangHex == errorCode) { return false; }
 
+
 	// + entitybase
 	offset::team = findpattern(false,true, (0x1E3990-sub), 2, 0, clientmodule, "\x8B\x81\x00\x00\x00\x00\xC3\xCC\xCC\xCC\xCC\xCC\xCC\xCC\xCC\xCC\x8B\x81\x00\x00\x00\x00\xC3\xCC\xCC\xCC\xCC\xCC\xCC\xCC\xCC\xCC\x8B\x01\xFF\xA0\x00\x00\x00\x00\xCC\xCC\xCC\xCC\xCC\xCC\xCC\xCC\x55\x8B\xEC\x57\x8B\xF9\x8B\x4D\x08\x85\xC9\x75\x07\x32\xC0\x5F\x5D\xC2\x04\x00\x8B\x01\x56\xFF\x90\x00\x00\x00\x00\x8B\x17\x8B\xCF", "xx????xxxxxxxxxxxx????xxxxxxxxxxxxxx????xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx????xxxx");
 	if (offset::team == errorCode) { return false; }
@@ -59,6 +61,15 @@ bool stablishOffsets(){
 	//+isMenuOpenBase
 	offset::isMenuOpen = findpattern(false, true, (0x4326d0-sub), 2, 0, clientmodule, "\x8B\x81\x00\x00\x00\x00\x83\xC0\xFD\x83\xF8\x01\x0F\x96\xC0\xC3", "xx????xxxxxxxxxx");
 	if (offset::isMenuOpen == errorCode) { return false; }
+
+
+
+	//===================|setting things that require the offsets|====================
+	module::client = (DWORD)GetModuleHandle(clientmodule);
+	module::engine = (DWORD)GetModuleHandle(enginemodule);
+	pointer::entityListptr = (DWORD)(module::client + offset::EntityList);
+	pointer::localPlayerptr = (DWORD)(module::client + offset::PlayerBase);
+	base::clientState = *(DWORD*)(module::engine + offset::ClientState);
 
 	return true;
 }

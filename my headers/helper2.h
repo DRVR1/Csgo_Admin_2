@@ -33,6 +33,8 @@ namespace csgo {
             }
 
         }
+        
+        
         if (hackbools::menuOpen == 3) { //main menu
             if (GetAsyncKeyState(0x2D) & 1) {
                 if (hackbools::bmenuOpen) {
@@ -44,18 +46,25 @@ namespace csgo {
 
             }
         }
+
         if (hackbools::radarHack) { action::radarHack(); }
+
+
         if (hackbools::bhHack) { action::bunnyJump(); }
+
         if (hackbools::flashbangHack) {
             if (*(DWORD*)pointer::localPlayerptr != NULL || 0x0) {
-                *(float*)(*((DWORD*)pointer::localPlayerptr) + offset::flashbangHex) = 0;
+                *(FLOAT*)((*(DWORD*)pointer::localPlayerptr) + offset::flashbangHex) = 0;
             }
         }
+
         if (!hackbools::flashbangHack) {
             if (*(DWORD*)pointer::localPlayerptr != NULL || 0x0) {
-                *(float*)(*((DWORD*)pointer::localPlayerptr) + offset::flashbangHex) = 255;
+             *(FLOAT*)((*(DWORD*)pointer::localPlayerptr) + offset::flashbangHex) = 255;
             }
         }
+
         if (hackbools::triggerbothack) { action::triggerBot(); }
+
     }
 }

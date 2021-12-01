@@ -45,6 +45,14 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
 
             bool stablished = false;
             stablished = stablishOffsets();
+
+            //printf("local player pointer is : 0x%x\n", pointer::localPlayerptr);
+            //printf("flashbangHex: 0x%x\n", offset::flashbangHex);
+            //system("pause");
+            //*(FLOAT*)((*(DWORD*)pointer::localPlayerptr) + offset::flashbangHex) = 0;
+            //system("pause");
+            //stablished = false;
+
             if (stablished) {
                 FreeConsole();
                 fclose(f);

@@ -102,7 +102,7 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
     if (hackbools::bmenuOpen) {
 
-        ImGui::Begin("Csgo \"the admin\" alpha + 2", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+        ImGui::Begin("Csgo \"the admin\" alpha + 4", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 
         if (ImGui::Checkbox("Radar hack", &hackbools::radarHack)) {
 

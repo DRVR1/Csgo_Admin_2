@@ -7,8 +7,8 @@
 
 namespace module {
 	//===============|MODULES|=================================
-	DWORD client = (DWORD)GetModuleHandle("client.dll");
-	DWORD engine = (DWORD)GetModuleHandle("engine.dll");
+	DWORD client = 0x0;
+	DWORD engine = 0x0;
 }
 
 namespace offset {
@@ -44,14 +44,14 @@ namespace offset {
 //===============|POINTERS|=================================
 namespace pointer {
 	//pointers
-	DWORD entityListptr = (DWORD)(module::client + offset::EntityList);
-	DWORD localPlayerptr = (DWORD)(module::client + offset::PlayerBase);
+	DWORD entityListptr = 0x0;
+	DWORD localPlayerptr = 0x0;
 }
 //===============|variables or static de-referenced|=================================
 namespace base {
 	DWORD isMenuOpenBase = 0x0;
 	DWORD localPlayer = 0x0;
 	DWORD entityList = 0x0;
-	DWORD clientState = *(DWORD*)(module::engine + offset::ClientState);
+	DWORD clientState = 0x0;
 }
 
