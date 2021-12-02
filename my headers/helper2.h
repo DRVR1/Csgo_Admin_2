@@ -33,8 +33,6 @@ namespace csgo {
             }
 
         }
-        
-        
         if (hackbools::menuOpen == 3) { //main menu
             if (GetAsyncKeyState(0x2D) & 1) {
                 if (hackbools::bmenuOpen) {

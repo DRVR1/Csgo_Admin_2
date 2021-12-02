@@ -55,7 +55,7 @@ namespace action {
             if (GetAsyncKeyState(0x12) & 0x8000) {
                 if (team != myteam) {
                     *(int*)(module::client + offset::ForceShoot) = 5;
-                    Sleep(20);
+                    Sleep(10);
                     *(int*)(module::client + offset::ForceShoot) = 4;
                 }
             }

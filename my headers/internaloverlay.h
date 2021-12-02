@@ -40,18 +40,23 @@ bool box1 = 0, box2 = 0, box3 = 0, box4 = 0, box5 = 0, box6 = 0, box7 = 0, box8 
 
 //BOOLS END------------------------------------------------------------------------------------------------
 LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+   
+    if (*(int*)(base::isMenuOpenBase + offset::isMenuOpen) != NULL || 0x0) {
+        if (*(int*)(base::isMenuOpenBase + offset::isMenuOpen) == 4 || *(int*)(base::isMenuOpenBase + offset::isMenuOpen) == 3) {
+            ImGuiIO& io = ImGui::GetIO();
+            ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam);
 
-    ImGuiIO& io = ImGui::GetIO();
-    ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam);
+            if (true && ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+                return true;
+        }
+    } return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 
-    if (true && ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
-        return true;
 
-    return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }
 
 
 HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
+    
     if (hackbools::init) {
         HWND newhandler = FindWindowA(NULL, targetName);
         oWndProc = (WNDPROC)SetWindowLongPtr(newhandler, GWL_WNDPROC, (LONG_PTR)WndProc);
@@ -88,10 +93,12 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
         ImGui::SetNextWindowSize(ImVec2(500, 500));
 
+        CloseHandle(newhandler);
         hackbools::init = false;
 
 
     }
+
 
     ImGui_ImplDX9_NewFrame();
     ImGui_ImplWin32_NewFrame();
