@@ -171,13 +171,14 @@
     <ClInclude Include="libraries\include\imgui\imgui_impl_dx9.h" />
     <ClInclude Include="libraries\include\imgui\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="libraries\include\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="my headers\aimbot.h" />
+    <ClInclude Include="my headers\gets.h" />
     <ClInclude Include="my headers\helper.h" />
     <ClInclude Include="my headers\helper2.h" />
     <ClInclude Include="my headers\internaloverlay.h" />
     <ClInclude Include="my headers\Offsets.h" />
     <ClInclude Include="my headers\setOffets.h" />
     <ClInclude Include="my headers\signature.h" />
-    <ClInclude Include="my headers\worldToScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

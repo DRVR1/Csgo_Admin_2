@@ -14,28 +14,28 @@ namespace module {
 namespace offset {
 	//===============|+MODULOS|=================================
 	// + client.dll
-	DWORD EntityList = 0x4DC177C; //not in hazedumper hexa x mio es 0x4DBF764 
-	DWORD PlayerBase = 0xDA747C; // dwLocalPlayer dword
-	DWORD ForceJump = 0x526B590; //dwForceJump  byte 04||05
-	DWORD ForceShoot = 0x31F1CB4;
+	DWORD EntityList = 0x0; //not in hazedumper hexa x mio es 0x4DBF764 
+	DWORD PlayerBase = 0x0; // dwLocalPlayer dword
+	DWORD ForceJump = 0x0; //dwForceJump  byte 04||05
+	DWORD ForceShoot = 0x0;
 	
 
 	// + engine.dll
-	DWORD ClientState = 0x589FCC; //dword dwClientState
+	DWORD ClientState = 0x0; //dword dwClientState
 
 	//===============|+BASES|=================================
 	// + PlayerBase
-	DWORD isGrounded = 0x104; //m_fFlags int 256||257 
-	DWORD flashbangHex = 0x1046C; //not in hazedumper 255||0
-	DWORD CrosshairId = 0x11838;
+	DWORD isGrounded = 0x0; //m_fFlags int 256||257 
+	DWORD flashbangHex = 0x0; //not in hazedumper 255||0
+	DWORD CrosshairId = 0x0;
 
 	// + entitybase
-	DWORD team = 0xF4; //m_iTeamNum  (ct) 3|| (t) 2
-	DWORD Health = 0x100;//m_iHealth  int
-	DWORD isSpotted = 0x980; //m_bSpottedByMask binary mask 
+	DWORD team = 0x0; //m_iTeamNum  (ct) 3|| (t) 2
+	DWORD Health = 0x0;//m_iHealth  int
+	DWORD isSpotted = 0x0; //m_bSpottedByMask binary mask 
 
 	// + ClientState
-	DWORD dwClientState_GetLocalPlayer = 0x180;
+	DWORD dwClientState_GetLocalPlayer = 0x0;
 
 	//+isMenuOpenBase
 	DWORD isMenuOpen = 0x0;
@@ -46,6 +46,7 @@ namespace pointer {
 	//pointers
 	DWORD entityListptr = 0x0;
 	DWORD localPlayerptr = 0x0;
+	DWORD clientStateptr = 0x0;
 }
 //===============|variables or static de-referenced|=================================
 namespace base {

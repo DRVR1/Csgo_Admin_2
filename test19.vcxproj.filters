@@ -19,28 +19,22 @@
     <Filter Include="Header Files\my headers">
       <UniqueIdentifier>{8cb1eb48-5350-49b0-b7d5-6d528e6921ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\my headers\Signature Scanner">
+      <UniqueIdentifier>{26e3345a-0c39-493e-b28f-d66b8361d114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\my headers\Offsets">
+      <UniqueIdentifier>{ca592fdc-6816-46d2-a202-dfe54468c095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\my headers\imgui">
+      <UniqueIdentifier>{2a942da8-5d46-40ce-9d26-5b63255736b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\my headers\hacks logic">
+      <UniqueIdentifier>{7bedab49-3ea9-4794-9add-c33835b02d8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libraries\include\imgui\imgui_impl_opengl3_loader.h">
       <Filter>Header Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="my headers\Offsets.h">
-      <Filter>Header Files\my headers</Filter>
-    </ClInclude>
-    <ClInclude Include="my headers\helper.h">
-      <Filter>Header Files\my headers</Filter>
-    </ClInclude>
-    <ClInclude Include="my headers\signature.h">
-      <Filter>Header Files\my headers</Filter>
-    </ClInclude>
-    <ClInclude Include="my headers\setOffets.h">
-      <Filter>Header Files\my headers</Filter>
-    </ClInclude>
-    <ClInclude Include="my headers\worldToScreen.h">
-      <Filter>Header Files\my headers</Filter>
-    </ClInclude>
-    <ClInclude Include="my headers\internaloverlay.h">
-      <Filter>Header Files\my headers</Filter>
     </ClInclude>
     <ClInclude Include="libraries\include\imgui\imgui_impl_dx9.h">
       <Filter>Header Files\imgui</Filter>
@@ -48,8 +42,29 @@
     <ClInclude Include="libraries\include\imgui\imgui_impl_win32.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="my headers\Offsets.h">
+      <Filter>Header Files\my headers\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="my headers\gets.h">
+      <Filter>Header Files\my headers\Offsets</Filter>
+    </ClInclude>
     <ClInclude Include="my headers\helper2.h">
-      <Filter>Header Files\my headers</Filter>
+      <Filter>Header Files\my headers\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="my headers\internaloverlay.h">
+      <Filter>Header Files\my headers\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="my headers\helper.h">
+      <Filter>Header Files\my headers\hacks logic</Filter>
+    </ClInclude>
+    <ClInclude Include="my headers\setOffets.h">
+      <Filter>Header Files\my headers\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="my headers\signature.h">
+      <Filter>Header Files\my headers\Signature Scanner</Filter>
+    </ClInclude>
+    <ClInclude Include="my headers\aimbot.h">
+      <Filter>Header Files\my headers\hacks logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,7 @@
 #include "my headers/helper.h"
 #include "my headers/setOffets.h"
 #include "my headers/internaloverlay.h"
+#include "my headers/aimbot.h"
 
 #include "libraries/include/internalhook/detours.h"
 
@@ -45,6 +46,42 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
 
             bool stablished = false;
             stablished = stablishOffsets();
+
+
+
+
+
+
+
+
+
+
+            //system("cls");
+            //while (1) {
+            //    aimbot();
+            //    if (GetAsyncKeyState(0x39) & 1) {
+            //        break;
+            //    }
+            //}
+            //stablished = false;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
 
             if (stablished) {
                 FreeConsole();

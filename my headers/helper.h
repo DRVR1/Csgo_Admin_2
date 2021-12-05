@@ -1,52 +1,56 @@
 #pragma once
 #include "Offsets.h"
 #include <bitset>
+#include "gets.h"
 
 
 namespace action {
 
 
     void radarHack() {
-        base::entityList = (DWORD)pointer::entityListptr;
+        get::EntityList(); 
+        get::LocalPlayerBase();
+        
 
         for (int i = 1; i < 64; i++) {
             DWORD* entptr = (DWORD*)((DWORD)base::entityList + (i * 0x10));
             if (*entptr == 0x0 || NULL) { continue; }
             DWORD currentEnt = *entptr;
-
+            if (get::ClientState() == false) { return; }
             std::bitset<32> x = *(int*)(currentEnt + offset::isSpotted);
             x[*(int*)(base::clientState + offset::dwClientState_GetLocalPlayer)] = 1; //position must be playercode
+            x[localplayer::teamcode()] = 1; //va desde derecha a izquierda en la mascara la cantidad de veces que el teamcode indique, ese bit se pone en 1
             *(int*)(currentEnt + offset::isSpotted) = (int)(x.to_ulong());
         }
     }
 
     void bunnyJump() {
-        if (*(DWORD*)pointer::localPlayerptr == NULL || 0x0) { return; }
-        else { base::localPlayer = *(DWORD*)pointer::localPlayerptr; }
+        if (get::LocalPlayerBase() == false) { return; }
 
-        if (*(int*)(base::localPlayer + offset::isGrounded) == 257) {
+        if (localplayer::isgrounded()) {
             if (GetAsyncKeyState(0x20) & 0x8000) {
-                *(int*)(module::client+ offset::ForceJump) = 5;
+                localplayer::forcejump();
             }
             else {
-                *(int*)(module::client + offset::ForceJump) = 4;
+                localplayer::forcenotjump();
             }
         }
         else {
-            *(int*)(module::client + offset::ForceJump) = 4;
+            localplayer::forcenotjump();
         }
     }
-
     void triggerBot() {
         DWORD team = 0x0;
         DWORD myteam = 0x0;
-        if (*(DWORD*)pointer::localPlayerptr == NULL || 0x0) { return; }
-        base::localPlayer = *(DWORD*)(module::client + offset::PlayerBase);
-        base::entityList = (DWORD)pointer::entityListptr;
-        DWORD onsight = *(int*)(base::localPlayer + offset::CrosshairId);
-       
-            if (onsight <= 64 && onsight > 1) {}
-            else { return; }
+
+        if (get::LocalPlayerBase() == false) {  return; }
+
+        if (get::EntityList() == false) { return; }
+
+        DWORD onsight = localplayer::onsight();
+        
+
+        if (onsight <= 64 && onsight > 1) {}  else { return; }
             DWORD* entptr = (DWORD*)(base::entityList + (0x10 * (onsight - 0x1)));
             DWORD currentEnt = *entptr;
             if (*(DWORD*)(currentEnt + offset::team) == 0x0 || NULL) { return; }
@@ -59,6 +63,7 @@ namespace action {
                     *(int*)(module::client + offset::ForceShoot) = 4;
                 }
             }
+
     }
 
 

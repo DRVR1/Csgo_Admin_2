@@ -15,14 +15,11 @@ namespace hackbools {
 }
 
 namespace csgo {
-    int tick0 = 0;
 
-    void toggleMenu() {
-        
-    }
 
     void loopHacks() {
         //activate cheats and check if in game menu is open
+        //========================|MENU TOGGLER|================================
         if (*(int*)(base::isMenuOpenBase + offset::isMenuOpen) != NULL || 0x0) {
             hackbools::menuOpen = *(int*)(base::isMenuOpenBase + offset::isMenuOpen);
             if (hackbools::menuOpen == 2) {//playing
@@ -45,11 +42,13 @@ namespace csgo {
             }
         }
 
+        //========================|RADAR HACK|================================
         if (hackbools::radarHack) { action::radarHack(); }
 
-
+        //========================|bunny hop|================================
         if (hackbools::bhHack) { action::bunnyJump(); }
 
+        //========================|flashbang|================================
         if (hackbools::flashbangHack) {
             if (*(DWORD*)pointer::localPlayerptr != NULL || 0x0) {
                 *(FLOAT*)((*(DWORD*)pointer::localPlayerptr) + offset::flashbangHex) = 0;
@@ -61,7 +60,7 @@ namespace csgo {
              *(FLOAT*)((*(DWORD*)pointer::localPlayerptr) + offset::flashbangHex) = 255;
             }
         }
-
+        //========================|triggerbot|================================
         if (hackbools::triggerbothack) { action::triggerBot(); }
 
     }
