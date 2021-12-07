@@ -10,15 +10,13 @@ namespace action {
     void radarHack() {
         get::EntityList(); 
         get::LocalPlayerBase();
-        
+        if (get::ClientState() == false) { return; }
 
         for (int i = 1; i < 64; i++) {
-            DWORD* entptr = (DWORD*)((DWORD)base::entityList + (i * 0x10));
+            DWORD* entptr = entity::entptr(i);
             if (*entptr == 0x0 || NULL) { continue; }
             DWORD currentEnt = *entptr;
-            if (get::ClientState() == false) { return; }
             std::bitset<32> x = *(int*)(currentEnt + offset::isSpotted);
-            x[*(int*)(base::clientState + offset::dwClientState_GetLocalPlayer)] = 1; //position must be playercode
             x[localplayer::teamcode()] = 1; //va desde derecha a izquierda en la mascara la cantidad de veces que el teamcode indique, ese bit se pone en 1
             *(int*)(currentEnt + offset::isSpotted) = (int)(x.to_ulong());
         }

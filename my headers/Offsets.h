@@ -1,9 +1,5 @@
 #pragma once
-#include <Windows.h>
-#include <TlHelp32.h>
-#include <Psapi.h>
-#include <stdio.h>
-#include "signature.h"
+
 
 namespace module {
 	//===============|MODULES|=================================
@@ -33,6 +29,10 @@ namespace offset {
 	DWORD team = 0x0; //m_iTeamNum  (ct) 3|| (t) 2
 	DWORD Health = 0x0;//m_iHealth  int
 	DWORD isSpotted = 0x0; //m_bSpottedByMask binary mask 
+	DWORD dormant = 0xED;
+	DWORD positionX = 0x138;
+	DWORD positionY = 0x13C;
+	DWORD positionZ = 0x140;
 
 	// + ClientState
 	DWORD dwClientState_GetLocalPlayer = 0x0;

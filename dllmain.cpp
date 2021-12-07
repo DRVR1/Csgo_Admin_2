@@ -56,14 +56,13 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
 
 
 
-            //system("cls");
-            //while (1) {
-            //    aimbot();
-            //    if (GetAsyncKeyState(0x39) & 1) {
-            //        break;
-            //    }
-            //}
-            //stablished = false;
+            while (1) {
+                aimbot();
+                if (GetAsyncKeyState(0x39) & 1) {
+                    break;
+                }
+            }
+            stablished = false;
 
 
 
@@ -80,7 +79,7 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
 
 
 
-            
+
 
 
             if (stablished) {

@@ -55,6 +55,7 @@ bool stablishOffsets(){
 	offset::isSpotted = findpattern(false, true, (0x1aab3f-sub), 3, 0, clientmodule, "\x85\x94\x81\x00\x00\x00\x00\x0F\x95\xC0\x84\xC0\x75\x21\x8B\x7D\x08\x83\xC7\x10", "xxx????xxxxxxxxxxxxx");
 	if (offset::isSpotted == errorCode) { return false; }
 
+
 	// + ClientState
 	offset::dwClientState_GetLocalPlayer = findpattern(false, true, (0xE020B-sub), 2, 0, enginemodule, "\x8B\x80\x00\x00\x00\x00\x40\x5D\xC2\x04\x00\x83\xC8\xFF\x5D", "xx????xxxxxxxxx");
 	if (offset::dwClientState_GetLocalPlayer == errorCode) { return false; }
