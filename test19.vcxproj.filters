@@ -66,6 +66,9 @@
     <ClInclude Include="my headers\aimbot.h">
       <Filter>Header Files\my headers\hacks logic</Filter>
     </ClInclude>
+    <ClInclude Include="my headers\hackbools.h">
+      <Filter>Header Files\my headers\imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libraries\include\imgui\imgui_impl_opengl3.cpp">

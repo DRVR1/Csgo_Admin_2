@@ -71,6 +71,24 @@ namespace localplayer {
 		}
 
 	}
+	float getviewangle(int wich) {
+		float x, y;
+		switch (wich) {
+		case 1:
+			x = *(float*)(base::clientState + offset::ViewAngleX);
+			return x;
+			break;
+		case 2:
+			y = *(float*)(base::clientState + offset::ViewAngleY);
+			return y;
+			break;
+		}
+
+	}
+	void setviewangle(float x,float y) {
+			*(float*)(base::clientState + offset::ViewAngleX) = x;
+			*(float*)(base::clientState + offset::ViewAngleY) = y;
+	}
 }
 namespace entity {
 	DWORD* entptr(int iterator) {

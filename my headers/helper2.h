@@ -1,18 +1,8 @@
 #pragma once
 #include <Windows.h>
+#include "helper.h"
+#include "hackbools.h"
 
-namespace hackbools {
-    bool menuVisible = true;
-    int menuOpen = 0;
-    bool bmenuOpen = true;
-    bool init = true;
-
-
-    bool radarHack = false;
-    bool bhHack = false;
-    bool flashbangHack = false;
-    bool triggerbothack = false;
-}
 
 namespace csgo {
     void loopHacks() {
@@ -60,6 +50,7 @@ namespace csgo {
         }
         //========================|triggerbot|================================
         if (hackbools::triggerbothack) { action::triggerBot(); }
-
+        //========================|aimbot|================================
+        if (hackbools::aimbothack) { action::aimbotheader(); }
     }
 }

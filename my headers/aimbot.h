@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <stdio.h>
+#include <math.h>
 
 int closest = 0;
 int SCREEN_WIDTH = GetSystemMetrics(SM_CXSCREEN); int xhairx = SCREEN_WIDTH / 2;
@@ -42,7 +43,7 @@ float distance(int x1, int y1, int x2, int y2)
         pow(y2 - y1, 2) * 1.0);
 }
 
-int FindClosestEnemy() {
+int FindClosestEnemy(bool sight, bool aimteam) {
     if (get::EntityList() == false) { return 0; }
     if (get::LocalPlayerBase() == false) { return 0; }
     float Finish=0;
@@ -55,45 +56,47 @@ int FindClosestEnemy() {
         DWORD* entptr = entity::entptr(i);
         if (*entptr == 0x0 || NULL) { continue; }
         DWORD Entity = *entptr;
-        int EnmTeam = entity::team(Entity); if (EnmTeam == localTeam) continue;
+        if (!aimteam) {
+            int EnmTeam = entity::team(Entity); if (EnmTeam == localTeam) continue;
+        }
         int EnmHealth = entity::health(Entity); if (EnmHealth < 1 || EnmHealth > 100) continue;
         int Dormant = entity::isdormant(Entity); if (Dormant) continue;
-        Vector3 headBone = WorldToScreen(entity::gethead(1,Entity), entity::gethead(2, Entity), entity::gethead(3, Entity),vm);
-
         float myposx = localplayer::getpos(1);
         float myposy = localplayer::getpos(2);
         float enemyx = entity::getpos(1, Entity);
         float enemyy = entity::getpos(2, Entity);
-        Finish = pythag(headBone.x, headBone.y, xhairx, xhairy);
-        finish2 = distance(enemyx, enemyy, myposx,myposy);
-        //if (Finish < Closest) {
-        //    Closest = Finish;
-        //    ClosestEntity = i;
-        //}
-        if (finish2 < Closest2) {
-            Closest2 = finish2;
-            ClosestEntity = i;
-            //anda bien, nada mas se ve mal el printf porque se checkean constantemente. sacar la  consola y probar aimbot
-            printf("enemy x: %f\nenemy y: %f\n", enemyx,enemyy);
-            printf("myposx %f\nmyposy: %f\n", myposx, myposy);
-            printf("distance from you: %f\n", finish2);
-            printf("closest:\nh: %d\nx: %f\ny: %f\n",entity::health(Entity),entity::getpos(1,Entity), entity::getpos(2, Entity));
-            system("cls");
+        if (sight) {
+            Vector3 headBone = WorldToScreen(entity::gethead(1, Entity), entity::gethead(2, Entity), entity::gethead(3, Entity), vm);
+            Finish = pythag(headBone.x, headBone.y, xhairx, xhairy);
+            if (Finish < Closest) {
+                Closest = Finish;
+                ClosestEntity = i;
+            }
+        }
+        else {
+            finish2 = distance(enemyx, enemyy, myposx, myposy);
+            if (finish2 < Closest2) {
+                Closest2 = finish2;
+                ClosestEntity = i;
+
+            }
         }
     }
 
     return ClosestEntity;
 }
 
-void FindClosestEnemythread() {
-    while (1) {
-        closest = FindClosestEnemy();
-        Sleep(1);
-    }
-}
+//void FindClosestEnemythread() {
+//    while (1) {
+//        closest = FindClosestEnemy();
+//        Sleep(1);
+//    }
+//}
 
 
-void aimbot() {
+void aimbot(bool sight, bool aimteam) {
+        closest = FindClosestEnemy(sight, aimteam);
+
         if (closest == 0) { return; }
         if (get::EntityList() == false) { return; }
         if (get::LocalPlayerBase() == false) { return; }
@@ -103,7 +106,17 @@ void aimbot() {
         DWORD currentEnt = *entptr;
         Vector3 closestw2shead = WorldToScreen(entity::gethead(1, currentEnt), entity::gethead(2, currentEnt), entity::gethead(3, currentEnt), vm);
         int health = entity::health(currentEnt);
-        if (GetAsyncKeyState(VK_MENU)&& closestw2shead.z >= 0.001f && health>0) {
-            SetCursorPos(closestw2shead.x, closestw2shead.y);
+        if (GetAsyncKeyState(VK_MENU)&& health>0) {
+            if (closestw2shead.z >= 0.001f) {
+                SetCursorPos(closestw2shead.x, closestw2shead.y);
+            }
+            else {
+                get::ClientState();
+                float xf = localplayer::getviewangle(1);
+                xf += 180;
+                xf = fmod(xf, 360); if (xf < 0) { xf += 360; }
+                localplayer::setviewangle(xf, 0.18);
+            }
+            
         }
 }

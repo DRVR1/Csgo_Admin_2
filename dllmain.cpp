@@ -27,6 +27,7 @@
 #include "my headers/aimbot.h"
 
 #include "libraries/include/internalhook/detours.h"
+#include "my headers/helper2.h"
 
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -61,15 +62,13 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
             //CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)FindClosestEnemythread, hModule, NULL, NULL);
             //FreeConsole();
             //fclose(f);
-            while (1) {
-
-                aimbot();
-                FindClosestEnemy();
-                if (GetAsyncKeyState(0x39) & 1) {
-                    break;
-                }
-            }
-            stablished = false;
+            //while (1) {
+            //    aimbot();
+            //    if (GetAsyncKeyState(0x39) & 1) {
+            //        break;
+            //    }
+            //}
+            //stablished = false;
 
 
 
@@ -101,10 +100,10 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
                     }
                 }
             }
-            //if (!stablished){
-            //    printf("Unable to update offsets, wait for an update\n");
-            //    system("pause");
-            //}
+            if (!stablished){
+                printf("Unable to update offsets, wait for an update\n");
+                system("pause");
+            }
       
             
     FreeConsole();

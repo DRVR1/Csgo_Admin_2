@@ -38,6 +38,8 @@ namespace offset {
 
 	// + ClientState
 	DWORD dwClientState_GetLocalPlayer = 0x0;
+	DWORD ViewAngleY = 0x4D90;
+	DWORD ViewAngleX = 0x4D94;
 
 	//+isMenuOpenBase
 	DWORD isMenuOpen = 0x0;

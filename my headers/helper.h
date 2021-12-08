@@ -2,6 +2,8 @@
 #include "Offsets.h"
 #include <bitset>
 #include "gets.h"
+#include "aimbot.h"
+#include "hackbools.h"
 
 
 namespace action {
@@ -59,6 +61,9 @@ namespace action {
                 }
             }
 
+    }
+    void aimbotheader() {
+        aimbot(hackbools::targetSight,hackbools::targetTeam);
     }
 
 

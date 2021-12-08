@@ -11,7 +11,7 @@
 #include "../libraries/include/imgui/imgui_impl_dx9.h"
 #include "../libraries/include/imgui/imgui_impl_win32.h"
 
-#include"helper2.h"
+#include"hackbools.h"
 
 #include "libraries/include/internalhook/detours.h"
 
@@ -125,6 +125,16 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         if (ImGui::Checkbox("tiggerbot", &hackbools::triggerbothack)) {
             
         }
+        if (ImGui::Checkbox("aimbot", &hackbools::aimbothack)) {
+
+        }
+        if (ImGui::Checkbox("aimbot - aim team", &hackbools::targetTeam)) {
+
+        }
+        if (ImGui::Checkbox("aimbot - aim by sight", &hackbools::targetSight)) {
+
+        }
+
     }
 
     ImGui::EndFrame();
