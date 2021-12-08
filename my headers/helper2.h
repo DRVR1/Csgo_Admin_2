@@ -15,8 +15,6 @@ namespace hackbools {
 }
 
 namespace csgo {
-
-
     void loopHacks() {
         //activate cheats and check if in game menu is open
         //========================|MENU TOGGLER|================================

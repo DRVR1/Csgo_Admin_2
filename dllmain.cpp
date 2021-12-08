@@ -56,8 +56,15 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
 
 
 
+
+
+            //CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)FindClosestEnemythread, hModule, NULL, NULL);
+            //FreeConsole();
+            //fclose(f);
             while (1) {
+
                 aimbot();
+                FindClosestEnemy();
                 if (GetAsyncKeyState(0x39) & 1) {
                     break;
                 }
@@ -94,12 +101,12 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
                     }
                 }
             }
-            if (!stablished){
-                printf("Unable to update offsets, wait for an update\n");
-                system("pause");
-            }
+            //if (!stablished){
+            //    printf("Unable to update offsets, wait for an update\n");
+            //    system("pause");
+            //}
       
-    
+            
     FreeConsole();
     fclose(f);
     FreeLibraryAndExitThread(hModule, 0);
