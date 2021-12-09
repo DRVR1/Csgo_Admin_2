@@ -48,17 +48,6 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
             bool stablished = false;
             stablished = stablishOffsets();
 
-
-
-
-
-
-
-
-
-
-
-
             //CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)FindClosestEnemythread, hModule, NULL, NULL);
             //FreeConsole();
             //fclose(f);
@@ -69,24 +58,6 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
             //    }
             //}
             //stablished = false;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             if (stablished) {
                 FreeConsole();

@@ -39,8 +39,7 @@ float pythag(int x1, int y1, int x2, int y2) {
 float distance(int x1, int y1, int x2, int y2)
 {
     // Calculating distance
-    return sqrt(pow(x2 - x1, 2) +
-        pow(y2 - y1, 2) * 1.0);
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2) * 1.0);
 }
 
 int FindClosestEnemy(bool sight, bool aimteam) {
@@ -74,7 +73,7 @@ int FindClosestEnemy(bool sight, bool aimteam) {
             }
         }
         else {
-            finish2 = distance(enemyx, enemyy, myposx, myposy);
+            finish2 = pythag(enemyx, enemyy, myposx, myposy);
             if (finish2 < Closest2) {
                 Closest2 = finish2;
                 ClosestEntity = i;

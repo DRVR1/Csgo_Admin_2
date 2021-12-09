@@ -1,13 +1,13 @@
 #pragma once 
-#include <Windows.h>
+//#include <Windows.h>
 #include <stdio.h>
-#include <TlHelp32.h>
-#include <conio.h>
-#include <iostream>
+//#include <TlHelp32.h>
+//#include <conio.h>
+//#include <iostream>
 
 #include "imgui/imgui.h"
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
+//#include "imgui/imgui_impl_glfw.h"
+//#include "imgui/imgui_impl_opengl3.h"
 #include "../libraries/include/imgui/imgui_impl_dx9.h"
 #include "../libraries/include/imgui/imgui_impl_win32.h"
 
@@ -69,29 +69,69 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
         ImGuiStyle* style = &ImGui::GetStyle();
 
-        style->FramePadding = ImVec2(8, 4);
+
+
         style->WindowTitleAlign = ImVec2(0.5, 0.5);
-        style->FramePadding = ImVec2(8, 6);
-        style->Colors[ImGuiCol_TitleBg] = ImColor(255, 30, 30, 255);
-        style->Colors[ImGuiCol_TitleBgActive] = ImColor(255, 30, 45, 255);
-        style->Colors[ImGuiCol_TitleBgCollapsed] = ImColor(255, 30, 45, 255);
+        
+        style->WindowPadding = ImVec2(15, 15);
+        style->WindowRounding = 5.0f;
+        style->FramePadding = ImVec2(5, 5);
+        style->FrameRounding = 4.0f;
+        style->ItemSpacing = ImVec2(12, 8);
+        style->ItemInnerSpacing = ImVec2(8, 6);
+        style->IndentSpacing = 25.0f;
+        style->ScrollbarSize = 15.0f;
+        style->ScrollbarRounding = 9.0f;
+        style->GrabMinSize = 5.0f;
+        style->GrabRounding = 3.0f;
 
-        style->Colors[ImGuiCol_Button] = ImColor(255, 30, 45, 255);
-        style->Colors[ImGuiCol_ButtonActive] = ImColor(240, 0, 0, 255);
-        style->Colors[ImGuiCol_ButtonHovered] = ImColor(120, 30, 45, 255);
+        style->Colors[ImGuiCol_Text] = ImVec4(0.80f, 0.80f, 0.83f, 1.00f);
+        style->Colors[ImGuiCol_TextDisabled] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
+        style->Colors[ImGuiCol_WindowBg] = ImVec4(0.06f, 0.05f, 0.07f, 1.00f);
+        style->Colors[ImGuiCol_PopupBg] = ImVec4(0.07f, 0.07f, 0.09f, 1.00f);
+        style->Colors[ImGuiCol_Border] = ImVec4(0.80f, 0.80f, 0.83f, 0.88f);
+        style->Colors[ImGuiCol_BorderShadow] = ImVec4(0.92f, 0.91f, 0.88f, 0.00f);
+        style->Colors[ImGuiCol_FrameBg] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
+        style->Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
+        style->Colors[ImGuiCol_FrameBgActive] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
+        style->Colors[ImGuiCol_TitleBg] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
+        style->Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(1.00f, 0.98f, 0.95f, 0.75f);
+        style->Colors[ImGuiCol_TitleBgActive] = ImVec4(0.07f, 0.07f, 0.09f, 1.00f);
+        style->Colors[ImGuiCol_MenuBarBg] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
+        style->Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
+        style->Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.80f, 0.80f, 0.83f, 0.31f);
+        style->Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
+        style->Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.06f, 0.05f, 0.07f, 1.00f);
 
-        style->Colors[ImGuiCol_SliderGrab] = ImColor(255, 30, 45, 255);
-        style->Colors[ImGuiCol_SliderGrabActive] = ImColor(255, 30, 45, 255);
-        style->Colors[ImGuiCol_ScrollbarBg] = ImColor(255, 30, 45, 255);
+        style->Colors[ImGuiCol_CheckMark] = ImVec4(0.184f, 0.407f, 1.00f, 1.00f);
 
-        ImGui::GetStyle().WindowRounding = 0.0f;// <- Set this on init or use ImGui::PushStyleVar()
-        ImGui::GetStyle().ChildRounding = 0.0f;
-        ImGui::GetStyle().FrameRounding = 0.0f;
-        ImGui::GetStyle().GrabRounding = 0.0f;
-        ImGui::GetStyle().PopupRounding = 0.0f;
-        ImGui::GetStyle().ScrollbarRounding = 0.0f;
+        style->Colors[ImGuiCol_Tab] =       ImVec4(1.0f, 1.0f, 1.0f, 0.1f);
+        style->Colors[ImGuiCol_TabActive] = ImVec4(1.0f, 1.0f, 1.0f, 0.1f);
+        style->Colors[ImGuiCol_TabActive] = ImVec4(0.1f, 0.1f, 1.0f, 0.5f);
 
-        ImGui::SetNextWindowSize(ImVec2(500, 500));
+
+        style->Colors[ImGuiCol_SliderGrab] = ImVec4(0.80f, 0.80f, 0.83f, 0.31f);
+        style->Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.06f, 0.05f, 0.07f, 1.00f);
+        style->Colors[ImGuiCol_Button] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
+        style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.24f, 0.23f, 0.29f, 1.00f);
+
+        style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
+
+        style->Colors[ImGuiCol_Header] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
+        style->Colors[ImGuiCol_HeaderHovered] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
+        style->Colors[ImGuiCol_HeaderActive] = ImVec4(0.06f, 0.05f, 0.07f, 1.00f);
+        style->Colors[ImGuiCol_ResizeGrip] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+        style->Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
+        style->Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.06f, 0.05f, 0.07f, 1.00f);
+        style->Colors[ImGuiCol_PlotLines] = ImVec4(0.40f, 0.39f, 0.38f, 0.63f);
+        style->Colors[ImGuiCol_PlotLinesHovered] = ImVec4(0.25f, 1.00f, 0.00f, 1.00f);
+        style->Colors[ImGuiCol_PlotHistogram] = ImVec4(0.40f, 0.39f, 0.38f, 0.63f);
+        style->Colors[ImGuiCol_PlotHistogramHovered] = ImVec4(0.25f, 1.00f, 0.00f, 1.00f);
+        style->Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.25f, 1.00f, 0.00f, 0.43f);
+        style->Colors[ImGuiCol_Border] = ImVec4(0, 0, 255, 1.00f);
+       
+
+        style->WindowMinSize = ImVec2(300,300); 
 
         CloseHandle(newhandler);
         hackbools::init = false;
@@ -109,31 +149,50 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
     if (hackbools::bmenuOpen) {
 
-        ImGui::Begin("Csgo \"the admin\" alpha + 4", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+        ImGui::Begin("ghost assassin alpha", nullptr, ImGuiWindowFlags_NoCollapse);
 
-        if (ImGui::Checkbox("Radar hack", &hackbools::radarHack)) {
+        if (ImGui::BeginTabBar("options")) {
+            if (ImGui::BeginTabItem("Aimbot")) {
+                if (ImGui::Checkbox("aimbot", &hackbools::aimbothack)) {
 
+                }
+                if (ImGui::Checkbox("aim to team mates (bruh)", &hackbools::targetTeam)) {
+
+                }
+                if (ImGui::Checkbox("aim by closest to the sight", &hackbools::targetSight)) {
+
+                }
+                ImGui::EndTabItem();
+            }
+            if (ImGui::BeginTabItem("Misc")) {
+
+                if (ImGui::Checkbox("Radar hack", &hackbools::radarHack)) {
+
+                }
+
+                if (ImGui::Checkbox("BunnyHop", &hackbools::bhHack)) {
+
+                }
+
+                if (ImGui::Checkbox("Flashbang anti blind", &hackbools::flashbangHack)) {
+
+                }
+                ImGui::EndTabItem();
+            }
         }
 
-        if (ImGui::Checkbox("BunnyHop", &hackbools::bhHack)) {
+        if (ImGui::BeginTabItem("triggerbot")) {
+            if (ImGui::Checkbox("tiggerbot", &hackbools::triggerbothack)) {
 
+            }
+            ImGui::EndTabItem();
+        }
+        if (ImGui::BeginTabItem("config")) {
+            ImGui::ShowStyleSelector("select style");
+            ImGui::EndTabItem();
         }
 
-        if (ImGui::Checkbox("Flashbang anti blind", &hackbools::flashbangHack)) {
 
-        }
-        if (ImGui::Checkbox("tiggerbot", &hackbools::triggerbothack)) {
-            
-        }
-        if (ImGui::Checkbox("aimbot", &hackbools::aimbothack)) {
-
-        }
-        if (ImGui::Checkbox("aimbot - aim team", &hackbools::targetTeam)) {
-
-        }
-        if (ImGui::Checkbox("aimbot - aim by sight", &hackbools::targetSight)) {
-
-        }
 
     }
 
