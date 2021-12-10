@@ -1,21 +1,42 @@
 #pragma once
 
 
-namespace hackbools {
+namespace hackbools { //hackoptions
+
     //menu
     bool menuVisible = true;
-    int menuOpen = 0;
+    int Instance = 0;
     bool bmenuOpen = true;
     bool init = true;
+    bool shouldopen = true;
 
     //hacks
     bool radarHack = false;
     bool bhHack = false;
     bool flashbangHack = false;
-    bool triggerbothack = false;
+
 
     //aimbot
-    bool aimbothack = false;
-    bool targetTeam = false;
-    bool targetSight = false;
+    namespace aimbot {
+        bool aimbothack = false;
+        bool targetTeam = false;
+        bool targetSight = false;
+        float fov = 10;
+        float fovAccuracy = 400;
+        int bodypart = 5;
+        bool rage = false;
+        bool drawfov = false;
+        bool yawonly = false;
+       
+    }
+
+
+    //triggerbot
+    namespace triggerbot {
+        bool triggerbothack = false;
+        bool targetTeam = false;
+        
+    }
+   
+
 }

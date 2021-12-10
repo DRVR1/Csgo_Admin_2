@@ -2,17 +2,9 @@
 #include <stdio.h>
 #include <TlHelp32.h>
 
-
-#include <stdio.h>
-#include <Windows.h>
-#include <TlHelp32.h>
 #include <conio.h>
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <GLFW/glfw3native.h>
+
 #include "imgui/imgui.h"
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
 #include <stdio.h>
 #if defined(IMGUI_IMPL_OPENGL_ES2)
 #include <GLES2/gl2.h>
@@ -48,17 +40,6 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
             bool stablished = false;
             stablished = stablishOffsets();
 
-            //CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)FindClosestEnemythread, hModule, NULL, NULL);
-            //FreeConsole();
-            //fclose(f);
-            //while (1) {
-            //    aimbot();
-            //    if (GetAsyncKeyState(0x39) & 1) {
-            //        break;
-            //    }
-            //}
-            //stablished = false;
-
             if (stablished) {
                 FreeConsole();
                 fclose(f);
@@ -75,10 +56,10 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
                 printf("Unable to update offsets, wait for an update\n");
                 system("pause");
             }
-      
-            
-    FreeConsole();
-    fclose(f);
+    //  
+    //        
+    //FreeConsole();
+    //fclose(f);
     FreeLibraryAndExitThread(hModule, 0);
 
 

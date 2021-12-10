@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <math.h>
+#include "hackbools.h"
 
 int closest = 0;
 int SCREEN_WIDTH = GetSystemMetrics(SM_CXSCREEN); int xhairx = SCREEN_WIDTH / 2;
@@ -14,6 +15,8 @@ struct viewmatrix {
 struct Vector3 {
     float x, y, z;
 };
+
+Vector3 headBone;
 
 struct Vector3 WorldToScreen(float posx, float posy,float posz, struct viewmatrix matrix) { //This turns 3D coordinates (ex: XYZ) int 2D coordinates (ex: XY).
     struct Vector3 out;
@@ -36,86 +39,92 @@ struct Vector3 WorldToScreen(float posx, float posy,float posz, struct viewmatri
 float pythag(int x1, int y1, int x2, int y2) {
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
-float distance(int x1, int y1, int x2, int y2)
-{
-    // Calculating distance
-    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2) * 1.0);
-}
 
-int FindClosestEnemy(bool sight, bool aimteam) {
+int FindClosestEnemy() {
     if (get::EntityList() == false) { return 0; }
     if (get::LocalPlayerBase() == false) { return 0; }
-    float Finish=0;
-    float finish2=0;
-    int ClosestEntity = 0;
-    float Closest = FLT_MAX;
-    float Closest2 = FLT_MAX;
     int localTeam = localplayer::teamcode();
+    int ClosestEntity = 0;
+
+    float Closest = FLT_MAX;
+    float Finish = 0;
+
+    float finish2 = 0;
+    float Closest2 = FLT_MAX;
     for (int i = 1; i < 64; i++) { 
         DWORD* entptr = entity::entptr(i);
         if (*entptr == 0x0 || NULL) { continue; }
         DWORD Entity = *entptr;
-        if (!aimteam) {
+        if (!hackbools::aimbot::targetTeam) {
             int EnmTeam = entity::team(Entity); if (EnmTeam == localTeam) continue;
         }
         int EnmHealth = entity::health(Entity); if (EnmHealth < 1 || EnmHealth > 100) continue;
         int Dormant = entity::isdormant(Entity); if (Dormant) continue;
-        float myposx = localplayer::getpos(1);
-        float myposy = localplayer::getpos(2);
-        float enemyx = entity::getpos(1, Entity);
-        float enemyy = entity::getpos(2, Entity);
-        if (sight) {
-            Vector3 headBone = WorldToScreen(entity::gethead(1, Entity), entity::gethead(2, Entity), entity::gethead(3, Entity), vm);
-            Finish = pythag(headBone.x, headBone.y, xhairx, xhairy);
+
+        if (hackbools::aimbot::targetSight) { //set closest by distance from center of the screen to target
+            Vector3 Bone = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart, Entity), entity::getbodypart(2, hackbools::aimbot::bodypart, Entity), entity::getbodypart(3, hackbools::aimbot::bodypart, Entity), vm);
+            Finish = pythag(Bone.x, Bone.y, xhairx, xhairy);
             if (Finish < Closest) {
-                Closest = Finish;
-                ClosestEntity = i;
+                 Closest = Finish;
+                 ClosestEntity = i; 
             }
         }
-        else {
+        if(!hackbools::aimbot::targetSight) { //set closest by distance to player
+            float myposx = localplayer::getpos(1);
+            float myposy = localplayer::getpos(2);
+            float myposz = localplayer::getpos(3);
+            float enemyx = entity::getpos(1, Entity);
+            float enemyy = entity::getpos(2, Entity);
+            float enemyz = entity::getpos(3, Entity);
             finish2 = pythag(enemyx, enemyy, myposx, myposy);
             if (finish2 < Closest2) {
                 Closest2 = finish2;
                 ClosestEntity = i;
-
             }
         }
     }
-
     return ClosestEntity;
 }
 
-//void FindClosestEnemythread() {
-//    while (1) {
-//        closest = FindClosestEnemy();
-//        Sleep(1);
-//    }
-//}
 
 
-void aimbot(bool sight, bool aimteam) {
-        closest = FindClosestEnemy(sight, aimteam);
+void aimbot() {
+        closest = FindClosestEnemy();
 
-        if (closest == 0) { return; }
         if (get::EntityList() == false) { return; }
         if (get::LocalPlayerBase() == false) { return; }
-        vm = *(viewmatrix*)(module::client + offset::ViewMatrix);
+
+        
+        if (closest == 0) { return; }
+
+        vm = *(viewmatrix*)(module::client + offset::ViewMatrix); //todo: poner en gets
         DWORD* entptr = entity::entptr(closest);
         if (*entptr == 0x0 || NULL) { return; }
         DWORD currentEnt = *entptr;
-        Vector3 closestw2shead = WorldToScreen(entity::gethead(1, currentEnt), entity::gethead(2, currentEnt), entity::gethead(3, currentEnt), vm);
-        int health = entity::health(currentEnt);
-        if (GetAsyncKeyState(VK_MENU)&& health>0) {
-            if (closestw2shead.z >= 0.001f) {
-                SetCursorPos(closestw2shead.x, closestw2shead.y);
+        Vector3 closestw2shead = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart , currentEnt), entity::getbodypart(2, hackbools::aimbot::bodypart, currentEnt), entity::getbodypart(3, hackbools::aimbot::bodypart, currentEnt), vm);
+        float rdistance = pythag(closestw2shead.x, closestw2shead.y, xhairx, xhairy);
+        if (GetAsyncKeyState(VK_MENU)&0x8000) {
+            if (closestw2shead.z >= 0.001f ) {
+                if (rdistance < hackbools::aimbot::fov || hackbools::aimbot::rage) {
+                    if (hackbools::aimbot::yawonly) {
+                        POINT cursor;
+                        GetCursorPos(&cursor);
+                        SetCursorPos(closestw2shead.x, cursor.y);
+                    }
+                    else {
+                        SetCursorPos(closestw2shead.x, closestw2shead.y);
+                    }
+                }
+            }else {
+                if (hackbools::aimbot::rage) {
+                    get::ClientState();
+                    float xf = localplayer::getviewangle(1);
+                    xf += 180;
+                    xf = fmod(xf, 360); if (xf < 0) { xf += 360; }
+                    localplayer::setviewangle(xf, 0.18);
+                }
             }
-            else {
-                get::ClientState();
-                float xf = localplayer::getviewangle(1);
-                xf += 180;
-                xf = fmod(xf, 360); if (xf < 0) { xf += 360; }
-                localplayer::setviewangle(xf, 0.18);
-            }
+
             
         }
 }

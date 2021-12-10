@@ -17,6 +17,7 @@ namespace get {
 		return true;
 	}
 }
+
 namespace localplayer {
 	int playercode() {
 		return *(int*)(base::clientState + offset::dwClientState_GetLocalPlayer);
@@ -38,6 +39,10 @@ namespace localplayer {
 			return false;
 		}
 	}
+	void setflashbangAlpha(float input) {
+		if ((*(DWORD*)pointer::localPlayerptr) == NULL || 0x0) { return; }
+		*(FLOAT*)((*(DWORD*)pointer::localPlayerptr) + offset::flashbangHex) = input;
+	}
 
 	void forcejump() {
 		*(int*)(module::client + offset::ForceJump) = 5;
@@ -47,8 +52,6 @@ namespace localplayer {
 	}
 	void forceshoot() {
 		*(int*)(module::client + offset::ForceShoot) = 5;
-		Sleep(10);
-		*(int*)(module::client + offset::ForceShoot) = 4;
 	}
 	void forcenotshoot() {
 		*(int*)(module::client + offset::ForceShoot) = 4;
@@ -89,6 +92,15 @@ namespace localplayer {
 			*(float*)(base::clientState + offset::ViewAngleX) = x;
 			*(float*)(base::clientState + offset::ViewAngleY) = y;
 	}
+	namespace status{
+		int instance() {
+			if (*(int*)(base::isMenuOpenBase + offset::isMenuOpen) == NULL || 0x0) { return 0; }
+			return *(int*)(base::isMenuOpenBase + offset::isMenuOpen);
+		}
+		int weapon() {
+		
+		}
+	}
 }
 namespace entity {
 	DWORD* entptr(int iterator) {
@@ -125,20 +137,21 @@ namespace entity {
 		}
 	
 	}
-	float gethead(int wich, DWORD currentEnt) {
+
+	float getbodypart(int coord, int bodypart, DWORD currentEnt) {
 		DWORD bonebase = *(DWORD*)(currentEnt + offset::BoneMatrix);
 		float x, y, z;
-		switch (wich) {
+		switch (coord) {
 		case 1:
-			 x = *(float*)(bonebase + 0x30 * 8 + 0xC);
+			x = *(float*)(bonebase + 0x30 * bodypart + 0xC);
 			return x;
 			break;
 		case 2:
-			 y = *(float*)(bonebase + 0x30 * 8 + 0x1C);
+			y = *(float*)(bonebase + 0x30 * bodypart + 0x1C);
 			return y;
 			break;
 		case 3:
-			 z = *(float*)(bonebase + 0x30 * 8 + 0x2C);
+			z = *(float*)(bonebase + 0x30 * bodypart + 0x2C);
 			return z;
 			break;
 		}

@@ -11,7 +11,7 @@
 #include "../libraries/include/imgui/imgui_impl_dx9.h"
 #include "../libraries/include/imgui/imgui_impl_win32.h"
 
-#include"hackbools.h"
+#include"aimbot.h"
 
 #include "libraries/include/internalhook/detours.h"
 
@@ -153,47 +153,41 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
         if (ImGui::BeginTabBar("options")) {
             if (ImGui::BeginTabItem("Aimbot")) {
-                if (ImGui::Checkbox("aimbot", &hackbools::aimbothack)) {
+                if (ImGui::Checkbox("Aimbot", &hackbools::aimbot::aimbothack)) {}
+                if (ImGui::Checkbox("Aim to teammates (autoenabled in FFA)", &hackbools::aimbot::targetTeam)) {}
+                if (ImGui::Checkbox("Aim by the closest to the sight (else by position)", &hackbools::aimbot::targetSight)) { }
+                if (ImGui::Checkbox("Disable fov", &hackbools::aimbot::rage)) {}
+                if (ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov)) {}
+                if (ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy)) {}
+                if (ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 500)) {}
+                if (ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly)) {}
+                
 
-                }
-                if (ImGui::Checkbox("aim to team mates (bruh)", &hackbools::targetTeam)) {
-
-                }
-                if (ImGui::Checkbox("aim by closest to the sight", &hackbools::targetSight)) {
-
-                }
                 ImGui::EndTabItem();
             }
             if (ImGui::BeginTabItem("Misc")) {
+                if (ImGui::Checkbox("Radar hack", &hackbools::radarHack)) {}
+                if (ImGui::Checkbox("BunnyHop", &hackbools::bhHack)) {}
+                if (ImGui::Checkbox("Anti-flashbang", &hackbools::flashbangHack)) {}
 
-                if (ImGui::Checkbox("Radar hack", &hackbools::radarHack)) {
-
-                }
-
-                if (ImGui::Checkbox("BunnyHop", &hackbools::bhHack)) {
-
-                }
-
-                if (ImGui::Checkbox("Flashbang anti blind", &hackbools::flashbangHack)) {
-
-                }
                 ImGui::EndTabItem();
             }
         }
 
         if (ImGui::BeginTabItem("triggerbot")) {
-            if (ImGui::Checkbox("tiggerbot", &hackbools::triggerbothack)) {
+            if (ImGui::Checkbox("Tiggerbot", &hackbools::triggerbot::triggerbothack)) {} //hackbools::triggerbot::targetTeam
+            if (ImGui::Checkbox("Shoot teammates", &hackbools::triggerbot::targetTeam)) {}
 
-            }
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("config")) {
-            ImGui::ShowStyleSelector("select style");
-            ImGui::EndTabItem();
-        }
-
-
-
+    }
+    if (hackbools::aimbot::drawfov) {
+        ImGui::Begin("lmao", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | 
+            ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | 
+            ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar);
+        auto draw = ImGui::GetBackgroundDrawList();
+        draw->AddCircle(ImVec2(xhairx, xhairy), hackbools::aimbot::fov, IM_COL32(255, 0, 0, 255), 100, 1.0f);
+        ImGui::End();
     }
 
     ImGui::EndFrame();

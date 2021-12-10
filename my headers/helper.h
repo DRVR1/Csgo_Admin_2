@@ -42,6 +42,7 @@ namespace action {
     void triggerBot() {
         DWORD team = 0x0;
         DWORD myteam = 0x0;
+        bool aimteam = hackbools::triggerbot::targetTeam;
 
         if (get::LocalPlayerBase() == false) {  return; }
 
@@ -55,15 +56,18 @@ namespace action {
             DWORD currentEnt = *entptr;
             team = entity::team(currentEnt);
             myteam = localplayer::teamcode();
+            if (!aimteam) {
+                if (team == myteam) { return; }
+            }
             if (GetAsyncKeyState(0x12) & 0x8000) {
-                if (team != myteam) {
                     localplayer::forceshoot();
-                }
+                    Sleep(20);
+                    localplayer::forcenotshoot();
             }
 
     }
     void aimbotheader() {
-        aimbot(hackbools::targetSight,hackbools::targetTeam);
+        aimbot();
     }
 
 

@@ -36,13 +36,22 @@ namespace offset {
 	DWORD positionZ = 0x140;
 	DWORD BoneMatrix = 0x26A8;
 
+	namespace bone { //bodyparts
+		int	Head = 8;
+		int Neck = 7;
+		int UpperBody = 6;
+		int Body = 5;
+		int LowerBody = 3;
+		int Stomach = 4;
+	}
+
 	// + ClientState
 	DWORD dwClientState_GetLocalPlayer = 0x0;
 	DWORD ViewAngleY = 0x4D90;
 	DWORD ViewAngleX = 0x4D94;
 
 	//+isMenuOpenBase
-	DWORD isMenuOpen = 0x0;
+	DWORD isMenuOpen = 0x0; //2 playing 4 pause 3 mainmenu
 }
 
 //===============|POINTERS|=================================
