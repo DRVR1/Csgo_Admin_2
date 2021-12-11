@@ -34,6 +34,7 @@ WNDPROC oWndProc;
 //configs ------------------------------------------------------------------------------------------------
 const char targetName[] = "Counter-Strike: Global Offensive";
 
+
 //BOOLS ------------------------------------------------------------------------------------------------
 
 bool box1 = 0, box2 = 0, box3 = 0, box4 = 0, box5 = 0, box6 = 0, box7 = 0, box8 = 0, box9 = 0, box10 = 0;
@@ -160,7 +161,9 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
                 if (ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov)) {}
                 if (ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy)) {}
                 if (ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 500)) {}
-                if (ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly)) {}
+                ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly);
+                ImGui::ColorEdit4("Fov color", hackbools::aimbot::fovcolor);
+
                 
 
                 ImGui::EndTabItem();
@@ -175,7 +178,7 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         }
 
         if (ImGui::BeginTabItem("triggerbot")) {
-            if (ImGui::Checkbox("Tiggerbot", &hackbools::triggerbot::triggerbothack)) {} //hackbools::triggerbot::targetTeam
+            if (ImGui::Checkbox("Tiggerbot", &hackbools::triggerbot::triggerbothack)) {} 
             if (ImGui::Checkbox("Shoot teammates", &hackbools::triggerbot::targetTeam)) {}
 
             ImGui::EndTabItem();
@@ -186,7 +189,13 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
             ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | 
             ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar);
         auto draw = ImGui::GetBackgroundDrawList();
-        draw->AddCircle(ImVec2(xhairx, xhairy), hackbools::aimbot::fov, IM_COL32(255, 0, 0, 255), 100, 1.0f);
+        ImVec4 newfovcolor; //(first create a vector4 with the float colors then convert that vector into ImU32)
+        newfovcolor.x = hackbools::aimbot::fovcolor[0];
+        newfovcolor.y = hackbools::aimbot::fovcolor[1];
+        newfovcolor.z = hackbools::aimbot::fovcolor[2];
+        newfovcolor.w = hackbools::aimbot::fovcolor[3];
+        ImU32 newfovcolor2 = ImGui::ColorConvertFloat4ToU32(newfovcolor);
+        draw->AddCircle(ImVec2(xhairx, xhairy), hackbools::aimbot::fov, newfovcolor2, 100, 1.0f);
         ImGui::End();
     }
 

@@ -55,5 +55,6 @@ namespace csgo {
         if (hackbools::triggerbot::triggerbothack) { action::triggerBot(); }
         //========================|aimbot|================================
         if (hackbools::aimbot::aimbothack) { action::aimbotheader(); }
+        if (!hackbools::aimbot::targetSight) { hackbools::aimbot::rage = true; }
     }
 }

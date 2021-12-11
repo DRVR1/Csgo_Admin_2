@@ -128,7 +128,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
@@ -170,7 +170,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="libraries\include\imgui\imgui_impl_dx9.h" />
-    <ClInclude Include="libraries\include\imgui\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="libraries\include\imgui\imgui_impl_win32.h" />
     <ClInclude Include="my headers\aimbot.h" />
     <ClInclude Include="my headers\gets.h" />
@@ -188,8 +187,6 @@
     <ClCompile Include="libraries\include\imgui\imgui_demo.cpp" />
     <ClCompile Include="libraries\include\imgui\imgui_draw.cpp" />
     <ClCompile Include="libraries\include\imgui\imgui_impl_dx9.cpp" />
-    <ClCompile Include="libraries\include\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="libraries\include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="libraries\include\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="libraries\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="libraries\include\imgui\imgui_widgets.cpp" />

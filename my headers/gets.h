@@ -1,4 +1,4 @@
-#include "Offsets.h"
+#pragma once
 
 namespace get {
 	bool EntityList() { //por ahora no necesita desreferenciar

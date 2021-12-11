@@ -33,9 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libraries\include\imgui\imgui_impl_opengl3_loader.h">
-      <Filter>Header Files\imgui</Filter>
-    </ClInclude>
     <ClInclude Include="libraries\include\imgui\imgui_impl_dx9.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
@@ -71,9 +68,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="libraries\include\imgui\imgui_impl_opengl3.cpp">
-      <Filter>Header Files\imgui</Filter>
-    </ClCompile>
     <ClCompile Include="libraries\include\imgui\imgui_tables.cpp">
       <Filter>Header Files\imgui</Filter>
     </ClCompile>
@@ -87,9 +81,6 @@
       <Filter>Header Files\imgui</Filter>
     </ClCompile>
     <ClCompile Include="libraries\include\imgui\imgui_draw.cpp">
-      <Filter>Header Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="libraries\include\imgui\imgui_impl_glfw.cpp">
       <Filter>Header Files\imgui</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">

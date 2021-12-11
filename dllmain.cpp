@@ -1,23 +1,13 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <TlHelp32.h>
-
 #include <conio.h>
-
 #include "imgui/imgui.h"
 #include <stdio.h>
-#if defined(IMGUI_IMPL_OPENGL_ES2)
-#include <GLES2/gl2.h>
-#endif
-#include <GLFW/glfw3.h> 
-
-#include "my headers/signature.h"
-#include "my headers/Offsets.h"
 #include "my headers/helper.h"
 #include "my headers/setOffets.h"
 #include "my headers/internaloverlay.h"
 #include "my headers/aimbot.h"
-
 #include "libraries/include/internalhook/detours.h"
 #include "my headers/helper2.h"
 

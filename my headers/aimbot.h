@@ -1,16 +1,17 @@
 #pragma once
-#include <Windows.h>
-#include <stdio.h>
-#include <math.h>
 #include "hackbools.h"
+
 
 int closest = 0;
 int SCREEN_WIDTH = GetSystemMetrics(SM_CXSCREEN); int xhairx = SCREEN_WIDTH / 2;
 int SCREEN_HEIGHT = GetSystemMetrics(SM_CYSCREEN); int xhairy = SCREEN_HEIGHT / 2;
 
-struct viewmatrix {
-    float matrix[16];
-}vm;
+namespace viewmatrix {
+    struct viewmatrix {
+        float matrix[16];
+    }vm;
+}
+
 
 struct Vector3 {
     float x, y, z;
@@ -18,7 +19,7 @@ struct Vector3 {
 
 Vector3 headBone;
 
-struct Vector3 WorldToScreen(float posx, float posy,float posz, struct viewmatrix matrix) { //This turns 3D coordinates (ex: XYZ) int 2D coordinates (ex: XY).
+struct Vector3 WorldToScreen(float posx, float posy,float posz, struct viewmatrix::viewmatrix matrix) { //This turns 3D coordinates (ex: XYZ) int 2D coordinates (ex: XY).
     struct Vector3 out;
     float _x = matrix.matrix[0] * posx + matrix.matrix[1] * posy + matrix.matrix[2] * posz + matrix.matrix[3];
     float _y = matrix.matrix[4] * posx + matrix.matrix[5] * posy + matrix.matrix[6] * posz + matrix.matrix[7];
@@ -62,7 +63,7 @@ int FindClosestEnemy() {
         int Dormant = entity::isdormant(Entity); if (Dormant) continue;
 
         if (hackbools::aimbot::targetSight) { //set closest by distance from center of the screen to target
-            Vector3 Bone = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart, Entity), entity::getbodypart(2, hackbools::aimbot::bodypart, Entity), entity::getbodypart(3, hackbools::aimbot::bodypart, Entity), vm);
+            Vector3 Bone = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart, Entity), entity::getbodypart(2, hackbools::aimbot::bodypart, Entity), entity::getbodypart(3, hackbools::aimbot::bodypart, Entity), viewmatrix::vm);
             Finish = pythag(Bone.x, Bone.y, xhairx, xhairy);
             if (Finish < Closest) {
                  Closest = Finish;
@@ -97,11 +98,11 @@ void aimbot() {
         
         if (closest == 0) { return; }
 
-        vm = *(viewmatrix*)(module::client + offset::ViewMatrix); //todo: poner en gets
+        viewmatrix::vm = *(viewmatrix::viewmatrix*)(module::client + offset::ViewMatrix); //todo: poner en gets
         DWORD* entptr = entity::entptr(closest);
         if (*entptr == 0x0 || NULL) { return; }
         DWORD currentEnt = *entptr;
-        Vector3 closestw2shead = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart , currentEnt), entity::getbodypart(2, hackbools::aimbot::bodypart, currentEnt), entity::getbodypart(3, hackbools::aimbot::bodypart, currentEnt), vm);
+        Vector3 closestw2shead = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart , currentEnt), entity::getbodypart(2, hackbools::aimbot::bodypart, currentEnt), entity::getbodypart(3, hackbools::aimbot::bodypart, currentEnt), viewmatrix::vm);
         float rdistance = pythag(closestw2shead.x, closestw2shead.y, xhairx, xhairy);
         if (GetAsyncKeyState(VK_MENU)&0x8000) {
             if (closestw2shead.z >= 0.001f ) {

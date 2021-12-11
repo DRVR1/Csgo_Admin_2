@@ -67,5 +67,8 @@ namespace base {
 	DWORD localPlayer = 0x0;
 	DWORD entityList = 0x0;
 	DWORD clientState = 0x0;
+
+
 }
+
 
