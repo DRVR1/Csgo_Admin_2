@@ -1,20 +1,10 @@
 #pragma once 
-//#include <Windows.h>
 #include <stdio.h>
-//#include <TlHelp32.h>
-//#include <conio.h>
-//#include <iostream>
-
 #include "imgui/imgui.h"
-//#include "imgui/imgui_impl_glfw.h"
-//#include "imgui/imgui_impl_opengl3.h"
 #include "../libraries/include/imgui/imgui_impl_dx9.h"
 #include "../libraries/include/imgui/imgui_impl_win32.h"
-
 #include"aimbot.h"
-
 #include "libraries/include/internalhook/detours.h"
-
 #include <d3d9.h>
 #include <d3dx9.h>
 
@@ -32,7 +22,7 @@ LPD3DXFONT font;
 WNDPROC oWndProc;
 
 //configs ------------------------------------------------------------------------------------------------
-const char targetName[] = "Counter-Strike: Global Offensive";
+const char targetName[] = "Counter-Strike: Global Offensive - Direct3D 9";
 
 
 //BOOLS ------------------------------------------------------------------------------------------------

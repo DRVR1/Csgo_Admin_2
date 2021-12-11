@@ -45,11 +45,9 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
             if (!stablished){
                 printf("Unable to update offsets, wait for an update\n");
                 system("pause");
+                FreeConsole();
+                fclose(f);
             }
-    //  
-    //        
-    //FreeConsole();
-    //fclose(f);
     FreeLibraryAndExitThread(hModule, 0);
 
 

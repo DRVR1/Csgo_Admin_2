@@ -20,7 +20,7 @@ namespace hackbools { //hackoptions
         bool aimbothack = false;
         bool targetTeam = false;
         bool targetSight = false;
-        float fov = 10;
+        float fov = 100;
         float fovAccuracy = 400;
         float fovcolor[4] = {0,0,255,255};
         int bodypart = 5;

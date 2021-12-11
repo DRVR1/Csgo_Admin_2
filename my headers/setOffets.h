@@ -7,7 +7,8 @@ DWORD errorCode = 0x1;
 char clientmodule[] = "client.dll";
 char enginemodule[] = "engine.dll";
 
-DWORD sub = 0x100; //subs from offset to make a bigger search zone
+
+DWORD sub = 0x0; //subs from offset to make a bigger search zone
 
 bool stablishOffsets(){
 
@@ -15,11 +16,11 @@ bool stablishOffsets(){
 	// + client.dll
 	offset::EntityList = findpattern(true,true, (0x3FF00D-sub), 2, 0x10, clientmodule, "\x8B\x88\x00\x00\x00\x00\x85\xC9\x74\x42\x8B\x01\xFF\x50\x00\x8B\xF8\x85\xFF\x74\x37\x8B\x17\x8B\xCF\x8B\x92\x00\x00\x00\x00\xFF\xD2\x84\xC0\x74\x27", "xx????xxxxxxxx?xxxxxxxxxxxx????xxxxxx");
 	if (offset::EntityList == errorCode) { return false; }
-
+	
+	
 	offset::PlayerBase = findpattern(true,true, (0x2AB709-sub), 3, 4, clientmodule, "\x8D\x34\x85\x00\x00\x00\x00\x89\x15\x00\x00\x00\x00\x8B\x41\x08\x8B\x48\x04\x83\xF9\xFF", "xxx????xx????xxxxxxxxx");
 	if (offset::PlayerBase == errorCode) { return false; }
-
-
+	
 	offset::ForceJump = findpattern(true,true, (0x2ED64D-sub), 2, 0, clientmodule, "\x89\x0D\x00\x00\x00\x00\x8B\x0D\x00\x00\x00\x00\x8B\xF2\x8B\xC1\x83\xCE\x08\x24\x03\x8B\xC7\x0F\x44\xF2", "xx????xx????xxxxxxxxxxxxxx");
 	if (offset::ForceJump == errorCode) { return false; }
 
@@ -29,11 +30,11 @@ bool stablishOffsets(){
 
 	base::isMenuOpenBase = findpattern(false, true, (0x47B448-sub), 1, 0, clientmodule, "\xA1\x00\x00\x00\x00\x32\xD2\xB9\x00\x00\x00\x00\x89\x55\xF8\x8B\x40\x74\xFF\xD0", "x????xxx????xxxxxxxx");
 	if (base::isMenuOpenBase == errorCode) { return false; }
-	
+
 	// + engine.dll
 	offset::ClientState = findpattern(true,true, (0xB711B-sub), 1, 0, enginemodule, "\xA1\x00\x00\x00\x00\x33\xD2\x6A\x00\x6A\x00\x33\xC9\x89\xB0", "x????xxxxxxxxxx");
 	if (offset::ClientState == errorCode) { return false; }
-
+	
 	//===============|+BASES|=================================
 	// + PlayerBase
 	offset::isGrounded = findpattern(false,true, (0x3DEA8B-sub), 2, 0, clientmodule, "\xF6\x80\x04\x01\x00\x00\x02\x75\x6F\x84\xD2\x74\x70\x8B\x87\x00\x00\x00\x00\x05\x00\x00\x00\x00\xF3\x0F\x10\x10", "xxxxxxxxxxxxxxx????x????xxxx");

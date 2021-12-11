@@ -5,6 +5,7 @@
 #include <Psapi.h>
 #include <stdio.h>
 
+    bool debugMode = false;
 	//------how to use moduleinfo-----
 	//MODULEINFO mInfo = GetModuleInfo(module); 
 	//DWORD base = (DWORD)mInfo.lpBaseOfDll;
@@ -64,6 +65,7 @@
 						insider = insider - modulebase; //removing modulebase to make it an offset not a raw address
 					}
 					printf("returning 0x%x\n", insider);
+					if (debugMode) { printf("mask: %s\n", mask); system("pause"); }
 					return insider;
 				}
 				else { //return raw address
