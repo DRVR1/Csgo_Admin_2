@@ -55,6 +55,27 @@ namespace csgo {
         if (hackbools::triggerbot::triggerbothack) { action::triggerBot(); }
         //========================|aimbot|================================
         if (hackbools::aimbot::aimbothack) { action::aimbotheader(); }
-        if (!hackbools::aimbot::targetSight) { hackbools::aimbot::rage = true; }
+        if (!hackbools::aimbot::targetSight) { hackbools::aimbot::bfov = false; }
+
+        switch (hackbools::aimbot::selectedbodypart) {
+        case 0:
+            hackbools::aimbot::bodypart = offset::bone::Head;
+            break;
+        case 1:
+            hackbools::aimbot::bodypart = offset::bone::Neck;
+            break;
+        case 2:
+            hackbools::aimbot::bodypart = offset::bone::UpperBody;
+            break;
+        case 3:
+            hackbools::aimbot::bodypart = offset::bone::Body;
+            break;
+        case 4:
+            hackbools::aimbot::bodypart = offset::bone::Stomach;
+            break;
+        case 5:
+            hackbools::aimbot::bodypart = offset::bone::LowerBody;
+            break;
+        }
     }
 }

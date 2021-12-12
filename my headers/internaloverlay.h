@@ -7,6 +7,7 @@
 #include "libraries/include/internalhook/detours.h"
 #include <d3d9.h>
 #include <d3dx9.h>
+#include <vector>
 
 
 #pragma comment(lib, "d3d9.lib")
@@ -24,7 +25,7 @@ WNDPROC oWndProc;
 //configs ------------------------------------------------------------------------------------------------
 const char targetName[] = "Counter-Strike: Global Offensive - Direct3D 9";
 
-
+std::vector<const char*> bodypart = { "Head","Neck","Upper Body","Body","Stomach","Lower Body"};
 //BOOLS ------------------------------------------------------------------------------------------------
 
 bool box1 = 0, box2 = 0, box3 = 0, box4 = 0, box5 = 0, box6 = 0, box7 = 0, box8 = 0, box9 = 0, box10 = 0;
@@ -147,13 +148,13 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
                 if (ImGui::Checkbox("Aimbot", &hackbools::aimbot::aimbothack)) {}
                 if (ImGui::Checkbox("Aim to teammates (autoenabled in FFA)", &hackbools::aimbot::targetTeam)) {}
                 if (ImGui::Checkbox("Aim by the closest to the sight (else by position)", &hackbools::aimbot::targetSight)) { }
-                if (ImGui::Checkbox("Disable fov", &hackbools::aimbot::rage)) {}
+                ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);
                 if (ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov)) {}
                 if (ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy)) {}
                 if (ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 500)) {}
                 ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly);
                 ImGui::ColorEdit4("Fov color", hackbools::aimbot::fovcolor);
-
+                ImGui::Combo("Body part", &hackbools::aimbot::selectedbodypart, bodypart.data(), bodypart.size());
                 
 
                 ImGui::EndTabItem();

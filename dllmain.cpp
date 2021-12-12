@@ -17,6 +17,13 @@
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
+#include <conio.h>
+#include <fstream>
+#include <iostream>
+#include <chrono>
+#include <string>
+
+
 
 
 
@@ -26,7 +33,7 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
     AllocConsole();
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
-
+            system("color b");
             bool stablished = false;
             stablished = stablishOffsets();
 
@@ -48,7 +55,7 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
                 FreeConsole();
                 fclose(f);
             }
-    FreeLibraryAndExitThread(hModule, 0);
+            FreeLibraryAndExitThread(hModule, 0);
 
 
     

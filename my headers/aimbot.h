@@ -106,7 +106,7 @@ void aimbot() {
         float rdistance = pythag(closestw2shead.x, closestw2shead.y, xhairx, xhairy);
         if (GetAsyncKeyState(VK_MENU)&0x8000) {
             if (closestw2shead.z >= 0.001f ) {
-                if (rdistance < hackbools::aimbot::fov || hackbools::aimbot::rage) {
+                if (rdistance < hackbools::aimbot::fov || !hackbools::aimbot::bfov) {
                     if (hackbools::aimbot::yawonly) {
                         POINT cursor;
                         GetCursorPos(&cursor);
@@ -117,7 +117,7 @@ void aimbot() {
                     }
                 }
             }else {
-                if (hackbools::aimbot::rage) {
+                if (!hackbools::aimbot::bfov) {
                     get::ClientState();
                     float xf = localplayer::getviewangle(1);
                     xf += 180;

@@ -178,6 +178,7 @@
     <ClInclude Include="my headers\helper2.h" />
     <ClInclude Include="my headers\internaloverlay.h" />
     <ClInclude Include="my headers\Offsets.h" />
+    <ClInclude Include="my headers\readOffsetAddress.h" />
     <ClInclude Include="my headers\setOffets.h" />
     <ClInclude Include="my headers\signature.h" />
   </ItemGroup>
