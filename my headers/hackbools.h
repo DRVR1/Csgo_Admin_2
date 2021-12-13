@@ -20,7 +20,7 @@ namespace hackbools { //hackoptions
     //aimbot
     namespace aimbot {
         int toggleKey = 0x12;
-        int smoothness = 2;
+        int speed = 1;
         int sleepTime = 1;
         bool aimbothack = false;
         bool targetTeam = false;
@@ -33,6 +33,11 @@ namespace hackbools { //hackoptions
         bool bfov = true;
         bool drawfov = false;
         bool yawonly = false;
+
+        namespace oscillation {
+            int antiOscillator = 5;
+            bool drawOscillator = false;
+        }
 
         //debug shit
         namespace debug {

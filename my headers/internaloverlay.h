@@ -158,7 +158,10 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
                 ImGui::Checkbox("Aimbot", &hackbools::aimbot::aimbothack);
                 ImGui::Checkbox("Aim to teammates (autoenabled in FFA)", &hackbools::aimbot::targetTeam);
                 ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly);
-                ImGui::SliderInt("Smoothness", &hackbools::aimbot::smoothness,0,12);
+                ImGui::SliderInt("Speed", &hackbools::aimbot::speed,0,10);
+                ImGui::SliderInt("Sleep time", &hackbools::aimbot::sleepTime,1,10);
+                ImGui::SliderInt("Anti oscillator", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
+                ImGui::Checkbox("Draw oscillator", &hackbools::aimbot::oscillation::drawOscillator);
                 ImGui::Combo("Body part", &hackbools::aimbot::selectedbodypart, bodypart.data(), bodypart.size());
                 ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);
                 ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov);
@@ -187,7 +190,7 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         }
     }
     if (hackbools::aimbot::drawfov) {
-        ImGui::Begin("lmao", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | 
+        ImGui::Begin("fovDraw", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | 
             ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | 
             ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar);
         auto draw = ImGui::GetBackgroundDrawList();
@@ -198,6 +201,14 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         newfovcolor.w = hackbools::aimbot::fovcolor[3];
         ImU32 newfovcolor2 = ImGui::ColorConvertFloat4ToU32(newfovcolor);
         draw->AddCircle(ImVec2(xhairx, xhairy), hackbools::aimbot::fov, newfovcolor2, 100, 1.0f);
+        ImGui::End();
+    }
+    if (hackbools::aimbot::oscillation::drawOscillator) {
+        ImGui::Begin("OscillatorDraw", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground |
+            ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar |
+            ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar);
+        auto draw = ImGui::GetBackgroundDrawList();
+        draw->AddCircle(ImVec2(hackbools::aimbot::debug::gotoX, hackbools::aimbot::debug::gotoY), hackbools::aimbot::oscillation::antiOscillator, IM_COL32(255,0,0,255), 100, 1.0f);
         ImGui::End();
     }
 

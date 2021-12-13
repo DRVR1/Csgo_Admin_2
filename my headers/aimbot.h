@@ -105,32 +105,43 @@ void aimbot() {
         if (GetAsyncKeyState(hackbools::aimbot::toggleKey)&0x8000) {
             if (targetPos.z >= 0.001f ) {
                 if (rdistance < hackbools::aimbot::fov || !hackbools::aimbot::bfov) {
-                    if (hackbools::aimbot::yawonly) {
+                
+                        //SetCursorPos(targetPos.x, cursor.y);
                         POINT cursor;
-                        GetCursorPos(&cursor);
-                        SetCursorPos(targetPos.x, cursor.y);
-                    }
-                    else {
-                        POINT cursor;
-                        GetCursorPos(&cursor);
-                    
-                        if (hackbools::aimbot::smoothness != 0) { //todo: smooth in-range to avoid tilting
-                            if (targetPos.x < cursor.x) {
-                                SetCursorPos(cursor.x - hackbools::aimbot::smoothness, cursor.y);
-                                Sleep(hackbools::aimbot::sleepTime);
+                        if (hackbools::aimbot::speed != 0) { //todo: smooth in-range to avoid tilting
+                            GetCursorPos(&cursor);
+                            if (targetPos.x < cursor.x && (xhairx - hackbools::aimbot::oscillation::antiOscillator) > targetPos.x) {
+                                SetCursorPos(cursor.x - hackbools::aimbot::speed, cursor.y);
                             }
-                            if (targetPos.x > cursor.x ) {
-                                SetCursorPos(cursor.x + hackbools::aimbot::smoothness, cursor.y);
-                                Sleep(hackbools::aimbot::sleepTime); //todo: wtf is going on with sleepTime is too fast
+                            if (targetPos.x > cursor.x && (xhairx + hackbools::aimbot::oscillation::antiOscillator) < targetPos.x) {
+                                SetCursorPos(cursor.x + hackbools::aimbot::speed, cursor.y);
                             }
+                            GetCursorPos(&cursor);
+                            if (!hackbools::aimbot::yawonly) {
+                                if (targetPos.y > cursor.y && (xhairy + hackbools::aimbot::oscillation::antiOscillator) < targetPos.y) {
+                                    SetCursorPos(cursor.x, cursor.y + hackbools::aimbot::speed);
+                                }
+                                if (targetPos.y < cursor.y && (xhairy - hackbools::aimbot::oscillation::antiOscillator) > targetPos.y) {
+                                    SetCursorPos(cursor.x, cursor.y - hackbools::aimbot::speed);
+                                }
+                            }
+
+                            Sleep(hackbools::aimbot::sleepTime);
                         }
                         else {
-                            SetCursorPos(targetPos.x, targetPos.y);
+                            
+                            if (hackbools::aimbot::yawonly) {
+                                GetCursorPos(&cursor);
+                                SetCursorPos(targetPos.x, cursor.y);
+                            }
+                            else {
+                                SetCursorPos(targetPos.x, targetPos.y);
+                            }
                         }
 
 
                        
-                    }
+                    
                 }
             } else {
                 if (!hackbools::aimbot::bfov) {
