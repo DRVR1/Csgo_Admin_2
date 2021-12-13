@@ -137,6 +137,16 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
     ImGui::NewFrame();
 
 
+    ImGui::Begin("debug");
+    ImGui::Text("World to screen:");
+    ImGui::Text("Enemy X: %d",hackbools::aimbot::debug::gotoX);
+    ImGui::Text("Enemy Y: %d", hackbools::aimbot::debug::gotoY);
+    ImGui::Text("Enemy Z: %d", hackbools::aimbot::debug::gotoZ);
+    ImGui::Spacing();
+    ImGui::Text("Mouse X: %d", hackbools::aimbot::debug::mouseposX);
+    ImGui::Text("Mouse Y: %d", hackbools::aimbot::debug::mouseposY);
+
+
 
 
     if (hackbools::bmenuOpen) {
@@ -145,16 +155,17 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
         if (ImGui::BeginTabBar("options")) {
             if (ImGui::BeginTabItem("Aimbot")) {
-                if (ImGui::Checkbox("Aimbot", &hackbools::aimbot::aimbothack)) {}
-                if (ImGui::Checkbox("Aim to teammates (autoenabled in FFA)", &hackbools::aimbot::targetTeam)) {}
-                if (ImGui::Checkbox("Aim by the closest to the sight (else by position)", &hackbools::aimbot::targetSight)) { }
-                ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);
-                if (ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov)) {}
-                if (ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy)) {}
-                if (ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 500)) {}
+                ImGui::Checkbox("Aimbot", &hackbools::aimbot::aimbothack);
+                ImGui::Checkbox("Aim to teammates (autoenabled in FFA)", &hackbools::aimbot::targetTeam);
                 ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly);
-                ImGui::ColorEdit4("Fov color", hackbools::aimbot::fovcolor);
+                ImGui::SliderInt("Smoothness", &hackbools::aimbot::smoothness,0,12);
                 ImGui::Combo("Body part", &hackbools::aimbot::selectedbodypart, bodypart.data(), bodypart.size());
+                ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);
+                ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov);
+                ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy);
+                ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 500);
+                ImGui::ColorEdit4("Fov color", hackbools::aimbot::fovcolor);
+                
                 
 
                 ImGui::EndTabItem();

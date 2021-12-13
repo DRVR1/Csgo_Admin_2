@@ -41,6 +41,10 @@ float pythag(int x1, int y1, int x2, int y2) {
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
 
+
+
+
+
 int FindClosestEnemy() {
     if (get::EntityList() == false) { return 0; }
     if (get::LocalPlayerBase() == false) { return 0; }
@@ -62,32 +66,16 @@ int FindClosestEnemy() {
         int EnmHealth = entity::health(Entity); if (EnmHealth < 1 || EnmHealth > 100) continue;
         int Dormant = entity::isdormant(Entity); if (Dormant) continue;
 
-        if (hackbools::aimbot::targetSight) { //set closest by distance from center of the screen to target
             Vector3 Bone = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart, Entity), entity::getbodypart(2, hackbools::aimbot::bodypart, Entity), entity::getbodypart(3, hackbools::aimbot::bodypart, Entity), viewmatrix::vm);
             Finish = pythag(Bone.x, Bone.y, xhairx, xhairy);
             if (Finish < Closest) {
                  Closest = Finish;
                  ClosestEntity = i; 
             }
-        }
-        if(!hackbools::aimbot::targetSight) { //set closest by distance to player
-            float myposx = localplayer::getpos(1);
-            float myposy = localplayer::getpos(2);
-            float myposz = localplayer::getpos(3);
-            float enemyx = entity::getpos(1, Entity);
-            float enemyy = entity::getpos(2, Entity);
-            float enemyz = entity::getpos(3, Entity);
-            finish2 = pythag(enemyx, enemyy, myposx, myposy);
-            if (finish2 < Closest2) {
-                Closest2 = finish2;
-                ClosestEntity = i;
-            }
-        }
+
     }
     return ClosestEntity;
 }
-
-
 
 void aimbot() {
         closest = FindClosestEnemy();
@@ -102,21 +90,49 @@ void aimbot() {
         DWORD* entptr = entity::entptr(closest);
         if (*entptr == 0x0 || NULL) { return; }
         DWORD currentEnt = *entptr;
-        Vector3 closestw2shead = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart , currentEnt), entity::getbodypart(2, hackbools::aimbot::bodypart, currentEnt), entity::getbodypart(3, hackbools::aimbot::bodypart, currentEnt), viewmatrix::vm);
-        float rdistance = pythag(closestw2shead.x, closestw2shead.y, xhairx, xhairy);
-        if (GetAsyncKeyState(VK_MENU)&0x8000) {
-            if (closestw2shead.z >= 0.001f ) {
+        Vector3 targetPos = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart , currentEnt), entity::getbodypart(2, hackbools::aimbot::bodypart, currentEnt), entity::getbodypart(3, hackbools::aimbot::bodypart, currentEnt), viewmatrix::vm);
+        float rdistance = pythag(targetPos.x, targetPos.y, xhairx, xhairy);
+
+        //============|DEBUG|===========
+        POINT cursor;
+        GetCursorPos(&cursor);
+        hackbools::aimbot::debug::gotoX = targetPos.x;
+        hackbools::aimbot::debug::gotoY = targetPos.y;
+        hackbools::aimbot::debug::gotoZ = targetPos.z;
+        hackbools::aimbot::debug::mouseposX = cursor.x;
+        hackbools::aimbot::debug::mouseposY = cursor.y;
+        //============|DEBUG ENDS|=======
+        if (GetAsyncKeyState(hackbools::aimbot::toggleKey)&0x8000) {
+            if (targetPos.z >= 0.001f ) {
                 if (rdistance < hackbools::aimbot::fov || !hackbools::aimbot::bfov) {
                     if (hackbools::aimbot::yawonly) {
                         POINT cursor;
                         GetCursorPos(&cursor);
-                        SetCursorPos(closestw2shead.x, cursor.y);
+                        SetCursorPos(targetPos.x, cursor.y);
                     }
                     else {
-                        SetCursorPos(closestw2shead.x, closestw2shead.y);
+                        POINT cursor;
+                        GetCursorPos(&cursor);
+                    
+                        if (hackbools::aimbot::smoothness != 0) { //todo: smooth in-range to avoid tilting
+                            if (targetPos.x < cursor.x) {
+                                SetCursorPos(cursor.x - hackbools::aimbot::smoothness, cursor.y);
+                                Sleep(hackbools::aimbot::sleepTime);
+                            }
+                            if (targetPos.x > cursor.x ) {
+                                SetCursorPos(cursor.x + hackbools::aimbot::smoothness, cursor.y);
+                                Sleep(hackbools::aimbot::sleepTime); //todo: wtf is going on with sleepTime is too fast
+                            }
+                        }
+                        else {
+                            SetCursorPos(targetPos.x, targetPos.y);
+                        }
+
+
+                       
                     }
                 }
-            }else {
+            } else {
                 if (!hackbools::aimbot::bfov) {
                     get::ClientState();
                     float xf = localplayer::getviewangle(1);

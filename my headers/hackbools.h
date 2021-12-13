@@ -19,6 +19,9 @@ namespace hackbools { //hackoptions
 
     //aimbot
     namespace aimbot {
+        int toggleKey = 0x12;
+        int smoothness = 2;
+        int sleepTime = 1;
         bool aimbothack = false;
         bool targetTeam = false;
         bool targetSight = true;
@@ -30,6 +33,16 @@ namespace hackbools { //hackoptions
         bool bfov = true;
         bool drawfov = false;
         bool yawonly = false;
+
+        //debug shit
+        namespace debug {
+            int gotoX = 0;
+            int gotoY = 0;
+            int gotoZ = 0;
+            int mouseposX = 0;
+            int mouseposY = 0;
+        }
+
     }
     //triggerbot
     namespace triggerbot {
