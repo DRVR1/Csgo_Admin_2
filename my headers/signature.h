@@ -98,7 +98,16 @@
 					return insider;
 				}
 				else { //return raw address
-					return (final - modulebase);
+					if (relative) {
+						printf("returning 0x%x\n", (final - modulebase));
+						return (final - modulebase);
+						
+					}
+					else {
+						printf("returning 0x%x\n", (final));
+						return final;
+					}
+					
 				}
 
 

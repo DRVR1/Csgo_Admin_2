@@ -172,6 +172,7 @@
     <ClInclude Include="libraries\include\imgui\imgui_impl_dx9.h" />
     <ClInclude Include="libraries\include\imgui\imgui_impl_win32.h" />
     <ClInclude Include="my headers\aimbot.h" />
+    <ClInclude Include="my headers\gamefunctions.h" />
     <ClInclude Include="my headers\gets.h" />
     <ClInclude Include="my headers\hackbools.h" />
     <ClInclude Include="my headers\helper.h" />

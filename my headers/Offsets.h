@@ -14,8 +14,7 @@ namespace offset {
 	DWORD PlayerBase = 0x0; // dwLocalPlayer dword
 	DWORD ForceJump = 0x0; //dwForceJump  byte 04||05
 	DWORD ForceShoot = 0x0;
-	DWORD ViewMatrix = 0x4DC2384;
-	
+	DWORD ViewMatrix = 0x4DC1364;
 
 	// + engine.dll
 	DWORD ClientState = 0x0; //dword dwClientState
@@ -30,6 +29,7 @@ namespace offset {
 	DWORD team = 0x0; //m_iTeamNum  (ct) 3|| (t) 2
 	DWORD Health = 0x0;//m_iHealth  int
 	DWORD isSpotted = 0x0; //m_bSpottedByMask binary mask 
+	DWORD isbSpotted = 0x93D;
 	DWORD dormant = 0xED;
 	DWORD positionX = 0x138;
 	DWORD positionY = 0x13C;
@@ -52,6 +52,10 @@ namespace offset {
 
 	//+isMenuOpenBase
 	DWORD isMenuOpen = 0x0; //2 playing 4 pause 3 mainmenu
+
+	namespace function {
+		DWORD autoAccept = 0x0;
+	}
 }
 
 //===============|POINTERS|=================================
@@ -70,5 +74,6 @@ namespace base {
 
 
 }
+
 
 

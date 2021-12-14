@@ -24,16 +24,13 @@
 #include <string>
 
 
-
-
-
-
-
 DWORD WINAPI MainActivity(HMODULE hModule) {
     AllocConsole();
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
-            system("color b");
+
+
+            system("color b"); 
             bool stablished = false;
             stablished = stablishOffsets();
 
@@ -55,11 +52,15 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
                 FreeConsole();
                 fclose(f);
             }
+
+
             FreeLibraryAndExitThread(hModule, 0);
 
 
     
 }
+
+
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,

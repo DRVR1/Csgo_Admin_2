@@ -60,12 +60,11 @@ int FindClosestEnemy() {
         DWORD* entptr = entity::entptr(i);
         if (*entptr == 0x0 || NULL) { continue; }
         DWORD Entity = *entptr;
+        int Dormant = entity::isdormant(Entity); if (Dormant) continue;
+        int EnmHealth = entity::health(Entity); if (EnmHealth < 1 || EnmHealth > 100) continue;
         if (!hackbools::aimbot::targetTeam) {
             int EnmTeam = entity::team(Entity); if (EnmTeam == localTeam) continue;
         }
-        int EnmHealth = entity::health(Entity); if (EnmHealth < 1 || EnmHealth > 100) continue;
-        int Dormant = entity::isdormant(Entity); if (Dormant) continue;
-
             Vector3 Bone = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart, Entity), entity::getbodypart(2, hackbools::aimbot::bodypart, Entity), entity::getbodypart(3, hackbools::aimbot::bodypart, Entity), viewmatrix::vm);
             Finish = pythag(Bone.x, Bone.y, xhairx, xhairy);
             if (Finish < Closest) {
@@ -84,7 +83,7 @@ void aimbot() {
         if (get::LocalPlayerBase() == false) { return; }
 
         
-        if (closest == 0) { return; }
+        if (closest == 0) { hackbools::aimbot::oscillation::canDraw = false;  return; }
 
         viewmatrix::vm = *(viewmatrix::viewmatrix*)(module::client + offset::ViewMatrix); //todo: poner en gets
         DWORD* entptr = entity::entptr(closest);
@@ -92,6 +91,10 @@ void aimbot() {
         DWORD currentEnt = *entptr;
         Vector3 targetPos = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart , currentEnt), entity::getbodypart(2, hackbools::aimbot::bodypart, currentEnt), entity::getbodypart(3, hackbools::aimbot::bodypart, currentEnt), viewmatrix::vm);
         float rdistance = pythag(targetPos.x, targetPos.y, xhairx, xhairy);
+
+        //if (!hackbools::aimbot::aimtrhoughwall) {
+        //    if (!entity::isbSpotted(currentEnt)) { return; }
+        //}
 
         //============|DEBUG|===========
         POINT cursor;
@@ -102,10 +105,13 @@ void aimbot() {
         hackbools::aimbot::debug::mouseposX = cursor.x;
         hackbools::aimbot::debug::mouseposY = cursor.y;
         //============|DEBUG ENDS|=======
+        if (targetPos.z >= 0.001f) { hackbools::aimbot::oscillation::canDraw = true; }
+        else {
+            hackbools::aimbot::oscillation::canDraw = false;
+        }
         if (GetAsyncKeyState(hackbools::aimbot::toggleKey)&0x8000) {
             if (targetPos.z >= 0.001f ) {
                 if (rdistance < hackbools::aimbot::fov || !hackbools::aimbot::bfov) {
-                
                         //SetCursorPos(targetPos.x, cursor.y);
                         POINT cursor;
                         if (hackbools::aimbot::speed != 0) { //todo: smooth in-range to avoid tilting
@@ -138,10 +144,6 @@ void aimbot() {
                                 SetCursorPos(targetPos.x, targetPos.y);
                             }
                         }
-
-
-                       
-                    
                 }
             } else {
                 if (!hackbools::aimbot::bfov) {

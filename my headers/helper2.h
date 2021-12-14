@@ -2,10 +2,14 @@
 #include <Windows.h>
 #include "helper.h"
 #include "hackbools.h"
-
+#include "gamefunctions.h"
 
 namespace csgo {
     void loopHacks() {
+        //========================|AUTO ACCEPT|================================
+        if (hackbools::autoaccept) {
+            gamefunc::acceptmatch();
+        }
         //activate cheats and check if in game menu is open
         //========================|MENU TOGGLER|================================
             hackbools::Instance = localplayer::status::instance();

@@ -18,7 +18,6 @@ bool stablishOffsets() {
 	}
 	else { readOffsets(); }
 
-	//===============|+MODULOS|=================================
 	// + client.dll
 	offset::EntityList = findpattern(true, true, (0x402C2D - sub), offsetload::offset[0], 2, 0x10, clientmodule, "\x8B\x88\x00\x00\x00\x00\x85\xC9\x74\x42\x8B\x01\xFF\x50\x00\x8B\xF8\x85\xFF\x74\x37\x8B\x17\x8B\xCF\x8B\x92\x00\x00\x00\x00\xFF\xD2\x84\xC0\x74\x27", "xx????xxxxxxxx?xxxxxxxxxxxx????xxxxxx");
 	if (offset::EntityList == errorCode) { return false; }
@@ -30,7 +29,7 @@ bool stablishOffsets() {
 	if (offset::ForceJump == errorCode) { return false; }
 
 	offset::ForceShoot = findpattern(true, true, (0x2ED585 - sub), offsetload::offset[3], 2, 0, clientmodule, "\x8B\x0D\x00\x00\x00\x00\x8B\xD6\x8B\xC1\x83\xCA\x01\x24\x03", "xx????xxxxxxxxx");
-	if (base::isMenuOpenBase == errorCode) { return false; }
+	if (offset::ForceShoot == errorCode) { return false; }
 
 	base::isMenuOpenBase = findpattern(false, true, (0x47B3F8 - sub), offsetload::offset[4], 1, 0, clientmodule, "\xA1\x00\x00\x00\x00\x32\xD2\xB9\x00\x00\x00\x00\x89\x55\xF8\x8B\x40\x74\xFF\xD0", "x????xxx????xxxxxxxx");
 	if (base::isMenuOpenBase == errorCode) { return false; }
@@ -39,7 +38,6 @@ bool stablishOffsets() {
 	offset::ClientState = findpattern(true, true, (0xB6E7B - sub), offsetload::offset[5], 1, 0, enginemodule, "\xA1\x00\x00\x00\x00\x33\xD2\x6A\x00\x6A\x00\x33\xC9\x89\xB0", "x????xxxxxxxxxx");
 	if (offset::ClientState == errorCode) { return false; }
 
-	//===============|+BASES|=================================
 	// + PlayerBase
 	offset::isGrounded = findpattern(false, true, (0x3DEA8B - sub), offsetload::offset[6], 2, 0, clientmodule, "\xF6\x80\x04\x01\x00\x00\x02\x75\x6F\x84\xD2\x74\x70\x8B\x87\x00\x00\x00\x00\x05\x00\x00\x00\x00\xF3\x0F\x10\x10", "xxxxxxxxxxxxxxx????x????xxxx");
 	if (offset::isGrounded == errorCode) { return false; }
@@ -69,6 +67,9 @@ bool stablishOffsets() {
 	offset::isMenuOpen = findpattern(false, true, (0x4326d0 - sub), offsetload::offset[13], 2, 0, clientmodule, "\x8B\x81\x00\x00\x00\x00\x83\xC0\xFD\x83\xF8\x01\x0F\x96\xC0\xC3", "xx????xxxxxxxxxx");
 	if (offset::isMenuOpen == errorCode) { return false; }
 
+	// + client.dll
+	offset::function::autoAccept = findpattern(false, false, (0x5CDE60 - sub), offsetload::offset[14], 0, 0, clientmodule, "\x55\x8B\xEC\x83\xE4\xF8\x8B\x4D\x08\xBA\x00\x00\x00\x00\xE8\x00\x00\x00\x00\x85\xC0\x75\x12", "xxxxxxxxxx????x????xxxx");
+	if (offset::function::autoAccept == errorCode) { return false; }
 
 	//===================|setting things that require the offsets|====================
 	module::client = (DWORD)GetModuleHandle(clientmodule);

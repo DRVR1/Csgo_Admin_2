@@ -15,6 +15,7 @@ namespace hackbools { //hackoptions
     bool radarHack = false;
     bool bhHack = false;
     bool flashbangHack = false;
+    bool autoaccept = false;
 
 
     //aimbot
@@ -22,6 +23,7 @@ namespace hackbools { //hackoptions
         int toggleKey = 0x12;
         int speed = 1;
         int sleepTime = 1;
+        bool aimtrhoughwall = false;
         bool aimbothack = false;
         bool targetTeam = false;
         bool targetSight = true;
@@ -36,11 +38,13 @@ namespace hackbools { //hackoptions
 
         namespace oscillation {
             int antiOscillator = 5;
+            bool canDraw = false;
             bool drawOscillator = false;
         }
 
         //debug shit
         namespace debug {
+            bool debugmode = false;
             int gotoX = 0;
             int gotoY = 0;
             int gotoZ = 0;

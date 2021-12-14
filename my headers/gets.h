@@ -111,6 +111,10 @@ namespace entity {
 		bool output = *(bool*)(currentEnt + offset::dormant);
 		return output;
 	}
+	bool isbSpotted(DWORD currentEnt) {
+		bool output = *(bool*)(currentEnt + offset::isbSpotted);
+		return output;
+	}
 	int health(DWORD currentEnt) {
 		int output = *(int*)(currentEnt + offset::Health);
 		return output;

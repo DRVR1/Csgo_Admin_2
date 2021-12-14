@@ -137,14 +137,6 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
     ImGui::NewFrame();
 
 
-    ImGui::Begin("debug");
-    ImGui::Text("World to screen:");
-    ImGui::Text("Enemy X: %d",hackbools::aimbot::debug::gotoX);
-    ImGui::Text("Enemy Y: %d", hackbools::aimbot::debug::gotoY);
-    ImGui::Text("Enemy Z: %d", hackbools::aimbot::debug::gotoZ);
-    ImGui::Spacing();
-    ImGui::Text("Mouse X: %d", hackbools::aimbot::debug::mouseposX);
-    ImGui::Text("Mouse Y: %d", hackbools::aimbot::debug::mouseposY);
 
 
 
@@ -160,14 +152,15 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
                 ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly);
                 ImGui::SliderInt("Speed", &hackbools::aimbot::speed,0,10);
                 ImGui::SliderInt("Sleep time", &hackbools::aimbot::sleepTime,1,10);
-                ImGui::SliderInt("Anti oscillator", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
                 ImGui::Checkbox("Draw oscillator", &hackbools::aimbot::oscillation::drawOscillator);
+                ImGui::SliderInt("Anti oscillator", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
                 ImGui::Combo("Body part", &hackbools::aimbot::selectedbodypart, bodypart.data(), bodypart.size());
                 ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);
                 ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov);
                 ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy);
                 ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 500);
                 ImGui::ColorEdit4("Fov color", hackbools::aimbot::fovcolor);
+                ImGui::Checkbox("Debug mode", &hackbools::aimbot::debug::debugmode);
                 
                 
 
@@ -177,6 +170,8 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
                 if (ImGui::Checkbox("Radar hack", &hackbools::radarHack)) {}
                 if (ImGui::Checkbox("BunnyHop", &hackbools::bhHack)) {}
                 if (ImGui::Checkbox("Anti-flashbang", &hackbools::flashbangHack)) {}
+                if (ImGui::Checkbox("Auto accept", &hackbools::autoaccept)) {}
+
 
                 ImGui::EndTabItem();
             }
@@ -188,6 +183,17 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
             ImGui::EndTabItem();
         }
+    }
+    if (hackbools::aimbot::debug::debugmode) {
+        ImGui::Begin("debug", nullptr, ImGuiWindowFlags_NoCollapse);
+        ImGui::Text("World to screen:");
+        ImGui::Text("Enemy X: %d", hackbools::aimbot::debug::gotoX);
+        ImGui::Text("Enemy Y: %d", hackbools::aimbot::debug::gotoY);
+        ImGui::Text("Enemy Z: %d", hackbools::aimbot::debug::gotoZ);
+        ImGui::Spacing();
+        ImGui::Text("Mouse X: %d", hackbools::aimbot::debug::mouseposX);
+        ImGui::Text("Mouse Y: %d", hackbools::aimbot::debug::mouseposY);
+        ImGui::Spacing();
     }
     if (hackbools::aimbot::drawfov) {
         ImGui::Begin("fovDraw", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | 
@@ -203,7 +209,7 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         draw->AddCircle(ImVec2(xhairx, xhairy), hackbools::aimbot::fov, newfovcolor2, 100, 1.0f);
         ImGui::End();
     }
-    if (hackbools::aimbot::oscillation::drawOscillator) {
+    if (hackbools::aimbot::oscillation::drawOscillator && hackbools::aimbot::oscillation::canDraw) {
         ImGui::Begin("OscillatorDraw", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground |
             ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar |
             ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar);
