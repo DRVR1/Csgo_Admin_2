@@ -35,6 +35,7 @@ namespace hackbools { //hackoptions
         bool bfov = true;
         bool drawfov = false;
         bool yawonly = false;
+        bool autosettings = false;
 
         namespace oscillation {
             int antiOscillator = 5;
@@ -50,6 +51,10 @@ namespace hackbools { //hackoptions
             int gotoZ = 0;
             int mouseposX = 0;
             int mouseposY = 0;
+            int closest = 0;
+            int health = 0;
+            int iterator = 0;
+            int reached = 0;
         }
 
     }

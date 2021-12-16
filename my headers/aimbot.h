@@ -6,12 +6,6 @@ int closest = 0;
 int SCREEN_WIDTH = GetSystemMetrics(SM_CXSCREEN); int xhairx = SCREEN_WIDTH / 2;
 int SCREEN_HEIGHT = GetSystemMetrics(SM_CYSCREEN); int xhairy = SCREEN_HEIGHT / 2;
 
-namespace viewmatrix {
-    struct viewmatrix {
-        float matrix[16];
-    }vm;
-}
-
 
 struct Vector3 {
     float x, y, z;
@@ -19,11 +13,11 @@ struct Vector3 {
 
 Vector3 headBone;
 
-struct Vector3 WorldToScreen(float posx, float posy,float posz, struct viewmatrix::viewmatrix matrix) { //This turns 3D coordinates (ex: XYZ) int 2D coordinates (ex: XY).
+struct Vector3 WorldToScreen(float posx, float posy,float posz, float viewmatrix[]) { //This turns 3D coordinates (ex: XYZ) int 2D coordinates (ex: XY).
     struct Vector3 out;
-    float _x = matrix.matrix[0] * posx + matrix.matrix[1] * posy + matrix.matrix[2] * posz + matrix.matrix[3];
-    float _y = matrix.matrix[4] * posx + matrix.matrix[5] * posy + matrix.matrix[6] * posz + matrix.matrix[7];
-    out.z = matrix.matrix[12] * posx + matrix.matrix[13] * posy + matrix.matrix[14] * posz + matrix.matrix[15];
+    float _x = viewmatrix[0] * posx + viewmatrix[1] * posy + viewmatrix[2] * posz + viewmatrix[3];
+    float _y = viewmatrix[4] * posx + viewmatrix[5] * posy + viewmatrix[6] * posz + viewmatrix[7];
+    out.z = viewmatrix[12] * posx + viewmatrix[13] * posy + viewmatrix[14] * posz + viewmatrix[15];
 
     _x *= 1.f / out.z;
     _y *= 1.f / out.z;
@@ -56,16 +50,26 @@ int FindClosestEnemy() {
 
     float finish2 = 0;
     float Closest2 = FLT_MAX;
+
+    Vector3 Bone;
     for (int i = 1; i < 64; i++) { 
+        hackbools::aimbot::debug::iterator = i;
         DWORD* entptr = entity::entptr(i);
         if (*entptr == 0x0 || NULL) { continue; }
         DWORD Entity = *entptr;
-        int Dormant = entity::isdormant(Entity); if (Dormant) continue;
-        int EnmHealth = entity::health(Entity); if (EnmHealth < 1 || EnmHealth > 100) continue;
+        bool Dormant = entity::isdormant(Entity); if (Dormant) { continue; }
+        int EnmHealth = entity::health(Entity); if (EnmHealth < 1 || EnmHealth > 100) { continue; }
         if (!hackbools::aimbot::targetTeam) {
-            int EnmTeam = entity::team(Entity); if (EnmTeam == localTeam) continue;
+            int EnmTeam = entity::team(Entity); if (EnmTeam == localTeam) { continue;  }
         }
-            Vector3 Bone = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart, Entity), entity::getbodypart(2, hackbools::aimbot::bodypart, Entity), entity::getbodypart(3, hackbools::aimbot::bodypart, Entity), viewmatrix::vm);
+
+        
+
+        localplayer::setviewmatrix();
+        Bone = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart, Entity), entity::getbodypart(2, hackbools::aimbot::bodypart, Entity), entity::getbodypart(3, hackbools::aimbot::bodypart, Entity), globalData::localplayer::viewmatrix);
+
+        if (Bone.z < 0.0f) {  continue; }
+
             Finish = pythag(Bone.x, Bone.y, xhairx, xhairy);
             if (Finish < Closest) {
                  Closest = Finish;
@@ -77,42 +81,55 @@ int FindClosestEnemy() {
 }
 
 void aimbot() {
-        closest = FindClosestEnemy();
+    if (GetAsyncKeyState(hackbools::aimbot::toggleKey) & 0x8000 && closest != 0 && hackbools::aimbot::debug::health > 0) {}
+    else { closest = FindClosestEnemy(); }
+       
+
+        hackbools::aimbot::debug::closest = closest;
+        
 
         if (get::EntityList() == false) { return; }
         if (get::LocalPlayerBase() == false) { return; }
 
-        
         if (closest == 0) { hackbools::aimbot::oscillation::canDraw = false;  return; }
 
-        viewmatrix::vm = *(viewmatrix::viewmatrix*)(module::client + offset::ViewMatrix); //todo: poner en gets
         DWORD* entptr = entity::entptr(closest);
         if (*entptr == 0x0 || NULL) { return; }
         DWORD currentEnt = *entptr;
-        Vector3 targetPos = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart , currentEnt), entity::getbodypart(2, hackbools::aimbot::bodypart, currentEnt), entity::getbodypart(3, hackbools::aimbot::bodypart, currentEnt), viewmatrix::vm);
+        localplayer::setviewmatrix();
+        Vector3 targetPos = WorldToScreen(entity::getbodypart(1, hackbools::aimbot::bodypart , currentEnt), entity::getbodypart(2, hackbools::aimbot::bodypart, currentEnt), entity::getbodypart(3, hackbools::aimbot::bodypart, currentEnt), globalData::localplayer::viewmatrix);
         float rdistance = pythag(targetPos.x, targetPos.y, xhairx, xhairy);
 
-        //if (!hackbools::aimbot::aimtrhoughwall) {
-        //    if (!entity::isbSpotted(currentEnt)) { return; }
-        //}
 
         //============|DEBUG|===========
         POINT cursor;
         GetCursorPos(&cursor);
+        hackbools::aimbot::debug::health = entity::health(currentEnt);
         hackbools::aimbot::debug::gotoX = targetPos.x;
         hackbools::aimbot::debug::gotoY = targetPos.y;
         hackbools::aimbot::debug::gotoZ = targetPos.z;
         hackbools::aimbot::debug::mouseposX = cursor.x;
         hackbools::aimbot::debug::mouseposY = cursor.y;
+
+        hackbools::aimbot::debug::reached = 3;
         //============|DEBUG ENDS|=======
         if (targetPos.z >= 0.001f) { hackbools::aimbot::oscillation::canDraw = true; }
+
         else {
             hackbools::aimbot::oscillation::canDraw = false;
         }
+
         if (GetAsyncKeyState(hackbools::aimbot::toggleKey)&0x8000) {
             if (targetPos.z >= 0.001f ) {
                 if (rdistance < hackbools::aimbot::fov || !hackbools::aimbot::bfov) {
-                        //SetCursorPos(targetPos.x, cursor.y);
+                    /*if (hackbools::aimbot::autosettings) {
+                        if (rdistance < hackbools::aimbot::oscillation::antiOscillator) {
+                            hackbools::aimbot::speed = 0;
+                        }
+                        else {
+                            if (rdistance > 2 * hackbools::aimbot::oscillation::antiOscillator) { hackbools::aimbot::speed = 4; }
+                        }
+                    }*/
                         POINT cursor;
                         if (hackbools::aimbot::speed != 0) { //todo: smooth in-range to avoid tilting
                             GetCursorPos(&cursor);
@@ -139,22 +156,15 @@ void aimbot() {
                             if (hackbools::aimbot::yawonly) {
                                 GetCursorPos(&cursor);
                                 SetCursorPos(targetPos.x, cursor.y);
+                                if (hackbools::aimbot::speed == 0) { Sleep(hackbools::aimbot::sleepTime); }
+                                
                             }
                             else {
                                 SetCursorPos(targetPos.x, targetPos.y);
+                                Sleep(hackbools::aimbot::sleepTime);
                             }
                         }
                 }
-            } else {
-                if (!hackbools::aimbot::bfov) {
-                    get::ClientState();
-                    float xf = localplayer::getviewangle(1);
-                    xf += 180;
-                    xf = fmod(xf, 360); if (xf < 0) { xf += 360; }
-                    localplayer::setviewangle(xf, 0.18);
-                }
             }
-
-            
         }
 }

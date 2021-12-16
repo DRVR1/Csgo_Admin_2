@@ -8,6 +8,7 @@
 
 namespace action {
 
+    //========================|AUTOACCEPT|================================
 
     void radarHack() {
         get::EntityList(); 

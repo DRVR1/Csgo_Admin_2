@@ -1,5 +1,12 @@
 #pragma once
 
+namespace globalData {
+	namespace localplayer{
+		float viewmatrix[16];
+	}
+ 
+}
+
 namespace get {
 	bool EntityList() { //por ahora no necesita desreferenciar
 		//if (*(DWORD*)pointer::entityListptr == NULL || 0x0) { return false; }
@@ -26,7 +33,12 @@ namespace localplayer {
 		DWORD output = *(DWORD*)(base::localPlayer + offset::team);
 		return output;
 	}
-	
+	void setviewmatrix(){
+		for (int i = 0; i < 16; i++) {
+			globalData::localplayer::viewmatrix[i] = *(float*)(module::client + offset::ViewMatrix + i * 0x4);
+		}
+		
+	}
 	int onsight() {
 		return *(int*)(base::localPlayer + offset::CrosshairId);
 	}

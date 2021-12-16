@@ -151,14 +151,15 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
                 ImGui::Checkbox("Aim to teammates (autoenabled in FFA)", &hackbools::aimbot::targetTeam);
                 ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly);
                 ImGui::SliderInt("Speed", &hackbools::aimbot::speed,0,10);
-                ImGui::SliderInt("Sleep time", &hackbools::aimbot::sleepTime,1,10);
+                ImGui::SliderInt("Sleep time", &hackbools::aimbot::sleepTime,1,35);
+                ImGui::Checkbox("AutoSettings", &hackbools::aimbot::autosettings);
                 ImGui::Checkbox("Draw oscillator", &hackbools::aimbot::oscillation::drawOscillator);
                 ImGui::SliderInt("Anti oscillator", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
                 ImGui::Combo("Body part", &hackbools::aimbot::selectedbodypart, bodypart.data(), bodypart.size());
                 ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);
                 ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov);
                 ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy);
-                ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 500);
+                ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 800);
                 ImGui::ColorEdit4("Fov color", hackbools::aimbot::fovcolor);
                 ImGui::Checkbox("Debug mode", &hackbools::aimbot::debug::debugmode);
                 
@@ -194,6 +195,12 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         ImGui::Text("Mouse X: %d", hackbools::aimbot::debug::mouseposX);
         ImGui::Text("Mouse Y: %d", hackbools::aimbot::debug::mouseposY);
         ImGui::Spacing();
+        ImGui::Text("Iterator: %d", hackbools::aimbot::debug::iterator);
+        ImGui::Text("reached: %d", hackbools::aimbot::debug::reached);
+        ImGui::Text("Closest: %d", hackbools::aimbot::debug::closest);
+        ImGui::Text("Health: %d", hackbools::aimbot::debug::health);
+
+
     }
     if (hackbools::aimbot::drawfov) {
         ImGui::Begin("fovDraw", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | 
@@ -230,6 +237,7 @@ void hookEndScene() {
     IDirect3D9* pD3D = Direct3DCreate9(D3D_SDK_VERSION); // create IDirect3D9 object
     if (!pD3D)
         return;
+
 
     D3DPRESENT_PARAMETERS d3dparams = { 0 };
     d3dparams.SwapEffect = D3DSWAPEFFECT_DISCARD;

@@ -23,11 +23,23 @@
 #include <chrono>
 #include <string>
 
+//void(*caca)() = (void(*)())0x2DA446FF;
 
 DWORD WINAPI MainActivity(HMODULE hModule) {
     AllocConsole();
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
+
+    //system("color a");
+    //printf("continue?\n");
+    //system("pause");
+    //caca();
+    //printf("done\n");
+    //system("pause");
+
+    //FreeConsole();
+    //fclose(f);
+    //FreeLibraryAndExitThread(hModule, 0);
 
 
             system("color b"); 
@@ -52,7 +64,6 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
                 FreeConsole();
                 fclose(f);
             }
-
 
             FreeLibraryAndExitThread(hModule, 0);
 
