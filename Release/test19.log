@@ -7,19 +7,18 @@ D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(1
 D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(108,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(109,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(110,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(158,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(163,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(163,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(216,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(216,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(224,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(224,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(224,131): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(157,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(161,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(161,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(219,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(219,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(227,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(227,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(227,131): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Generating code
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\signature.h(122): warning C4715: 'findpattern': not all control paths return a value
-  10 of 1654 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+  1 of 1652 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    27 functions had inline decision re-evaluated but remain unchanged
+    26 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 detours.lib(detours.obj) : warning LNK4099: PDB '' was not found with 'detours.lib(detours.obj)' or at ''; linking object as if no debug info
 detours.lib(disasm.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(disasm.obj)' or at 'D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\Release\detours.pdb'; linking object as if no debug info

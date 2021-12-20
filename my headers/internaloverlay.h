@@ -9,6 +9,7 @@
 #include <d3dx9.h>
 #include <vector>
 
+#include "helper2.h"
 
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
@@ -48,6 +49,8 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 
 HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
+
+    csgo::loopHacks();
     
     if (hackbools::init) {
         HWND newhandler = FindWindowA(NULL, targetName);
@@ -151,9 +154,9 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
                 ImGui::Checkbox("Aim to teammates (autoenabled in FFA)", &hackbools::aimbot::targetTeam);
                 ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly);
                 ImGui::SliderInt("Speed", &hackbools::aimbot::speed,0,10);
-                ImGui::SliderInt("Sleep time", &hackbools::aimbot::sleepTime,1,35);
-                ImGui::Checkbox("AutoSettings", &hackbools::aimbot::autosettings);
-                ImGui::Checkbox("Draw oscillator", &hackbools::aimbot::oscillation::drawOscillator);
+                ImGui::SliderInt("Sleep time", &hackbools::aimbot::sleepTime,0,35);
+                ImGui::Checkbox("Auto speed (increase smoothness)", &hackbools::aimbot::autosettings);
+                ImGui::Checkbox("Draw anti oscillator", &hackbools::aimbot::oscillation::drawOscillator);
                 ImGui::SliderInt("Anti oscillator", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
                 ImGui::Combo("Body part", &hackbools::aimbot::selectedbodypart, bodypart.data(), bodypart.size());
                 ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);

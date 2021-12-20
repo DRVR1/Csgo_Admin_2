@@ -40,10 +40,13 @@ namespace action {
             localplayer::forcenotjump();
         }
     }
+    int tick = 0;
     void triggerBot() {
         DWORD team = 0x0;
         DWORD myteam = 0x0;
         bool aimteam = hackbools::triggerbot::targetTeam;
+
+        
 
         if (get::LocalPlayerBase() == false) {  return; }
 
@@ -53,18 +56,24 @@ namespace action {
         
 
         if (onsight <= 64 && onsight > 1) {}  else { return; }
-            DWORD* entptr = (DWORD*)(base::entityList + (0x10 * (onsight - 0x1)));
-            DWORD currentEnt = *entptr;
-            team = entity::team(currentEnt);
-            myteam = localplayer::teamcode();
-            if (!aimteam) {
-                if (team == myteam) { return; }
+        DWORD* entptr = (DWORD*)(base::entityList + (0x10 * (onsight - 0x1)));
+        DWORD currentEnt = *entptr;
+        team = entity::team(currentEnt);
+        myteam = localplayer::teamcode();
+        if (!aimteam) {
+            if (team == myteam) { return; }
+        }
+        if (GetAsyncKeyState(0x12) & 0x8000) {
+            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+            if (tick==2) {
+                mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                tick = 0;
             }
-            if (GetAsyncKeyState(0x12) & 0x8000) {
-                    localplayer::forceshoot();
-                    Sleep(20);
-                    localplayer::forcenotshoot();
-            }
+            tick++;
+           
+           
+            
+        }
 
     }
     void aimbotheader() {

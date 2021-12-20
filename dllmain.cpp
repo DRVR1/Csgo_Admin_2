@@ -51,7 +51,7 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
                 fclose(f);
                 hookEndScene();
                 while (1) {
-                    csgo::loopHacks();
+                    //csgo::loopHacks();
                     if (GetAsyncKeyState(0x39)) {
                         DetourRemove((PBYTE)pEndScene, (PBYTE)hookedEndScene);
                         break;

@@ -122,14 +122,14 @@ void aimbot() {
         if (GetAsyncKeyState(hackbools::aimbot::toggleKey)&0x8000) {
             if (targetPos.z >= 0.001f ) {
                 if (rdistance < hackbools::aimbot::fov || !hackbools::aimbot::bfov) {
-                    /*if (hackbools::aimbot::autosettings) {
-                        if (rdistance < hackbools::aimbot::oscillation::antiOscillator) {
+
+                    if (hackbools::aimbot::autosettings) {
+                        if (rdistance <= hackbools::aimbot::oscillation::antiOscillator) {
                             hackbools::aimbot::speed = 0;
+                        }else {
+                            if (rdistance > hackbools::aimbot::oscillation::antiOscillator) { hackbools::aimbot::speed = 10; }
                         }
-                        else {
-                            if (rdistance > 2 * hackbools::aimbot::oscillation::antiOscillator) { hackbools::aimbot::speed = 4; }
-                        }
-                    }*/
+                    }
                         POINT cursor;
                         if (hackbools::aimbot::speed != 0) { //todo: smooth in-range to avoid tilting
                             GetCursorPos(&cursor);
@@ -149,22 +149,19 @@ void aimbot() {
                                 }
                             }
 
-                            Sleep(hackbools::aimbot::sleepTime);
-                        }
-                        else {
+                            
+                        }else {
                             
                             if (hackbools::aimbot::yawonly) {
                                 GetCursorPos(&cursor);
                                 SetCursorPos(targetPos.x, cursor.y);
-                                if (hackbools::aimbot::speed == 0) { Sleep(hackbools::aimbot::sleepTime); }
                                 
                             }
                             else {
                                 SetCursorPos(targetPos.x, targetPos.y);
-                                Sleep(hackbools::aimbot::sleepTime);
                             }
                         }
-                }
+                }Sleep(hackbools::aimbot::sleepTime);
             }
         }
 }
