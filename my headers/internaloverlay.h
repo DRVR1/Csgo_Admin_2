@@ -50,7 +50,7 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
-    csgo::loopHacks();
+    csgo::gametickloopHacks();
     
     if (hackbools::init) {
         HWND newhandler = FindWindowA(NULL, targetName);
@@ -151,14 +151,15 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         if (ImGui::BeginTabBar("options")) {
             if (ImGui::BeginTabItem("Aimbot")) {
                 ImGui::Checkbox("Aimbot", &hackbools::aimbot::aimbothack);
+                ImGui::Combo("Body part", &hackbools::aimbot::selectedbodypart, bodypart.data(), bodypart.size());
                 ImGui::Checkbox("Aim to teammates (autoenabled in FFA)", &hackbools::aimbot::targetTeam);
                 ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly);
-                ImGui::SliderInt("Speed", &hackbools::aimbot::speed,0,10);
-                ImGui::SliderInt("Sleep time", &hackbools::aimbot::sleepTime,0,35);
-                ImGui::Checkbox("Auto speed (increase smoothness)", &hackbools::aimbot::autosettings);
-                ImGui::Checkbox("Draw anti oscillator", &hackbools::aimbot::oscillation::drawOscillator);
-                ImGui::SliderInt("Anti oscillator", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
-                ImGui::Combo("Body part", &hackbools::aimbot::selectedbodypart, bodypart.data(), bodypart.size());
+                ImGui::Checkbox("Switch target after kill",&hackbools::aimbot::findnewtarget);
+                ImGui::Checkbox("Smooth", &hackbools::aimbot::smoothaim);
+                ImGui::SliderInt("Smooth speed", &hackbools::aimbot::newspeed, 0, 18);
+                //ImGui::SliderInt("Speed", &hackbools::aimbot::speed,0,10);
+                ImGui::Checkbox("Draw target", &hackbools::aimbot::oscillation::drawOscillator);
+                ImGui::SliderInt("Target size", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
                 ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);
                 ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov);
                 ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy);
@@ -202,6 +203,8 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         ImGui::Text("reached: %d", hackbools::aimbot::debug::reached);
         ImGui::Text("Closest: %d", hackbools::aimbot::debug::closest);
         ImGui::Text("Health: %d", hackbools::aimbot::debug::health);
+        ImGui::Text("Speed: %d", hackbools::aimbot::speed);
+        ImGui::Text("Distance to Y center: %d", hackbools::aimbot::debug::distanceToY);
 
 
     }

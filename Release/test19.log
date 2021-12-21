@@ -1,24 +1,7 @@
-﻿  dllmain.cpp
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(35,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(73,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(73,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(101,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(101,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(108,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(109,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(110,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(157,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(161,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(161,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(219,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(219,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(227,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(227,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\internaloverlay.h(227,131): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating code
-  1 of 1652 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+﻿  Generating code
+  0 of 1653 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    26 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 detours.lib(detours.obj) : warning LNK4099: PDB '' was not found with 'detours.lib(detours.obj)' or at ''; linking object as if no debug info
 detours.lib(disasm.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(disasm.obj)' or at 'D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\Release\detours.pdb'; linking object as if no debug info

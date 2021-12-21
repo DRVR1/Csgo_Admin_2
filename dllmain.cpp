@@ -23,19 +23,31 @@
 #include <chrono>
 #include <string>
 
-//void(*caca)() = (void(*)())0x2DA446FF;
+
 
 DWORD WINAPI MainActivity(HMODULE hModule) {
     AllocConsole();
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
 
+    //stablishOffsets();
+    //void(*caca)(const char*) = (void(*)(const char*))offset::function::autoAccept;
     //system("color a");
     //printf("continue?\n");
     //system("pause");
-    //caca();
-    //printf("done\n");
-    //system("pause");
+
+    //int lol = 0;
+    //while (1) {
+    //    if (GetAsyncKeyState(0x39) & 1) {
+    //        break;
+    //    }
+    //    if (GetAsyncKeyState(0x31) & 1) {
+    //        printf("exec %d\n",lol);
+    //        lol++;
+    //        caca("a");
+    //        
+    //    }
+    //}
 
     //FreeConsole();
     //fclose(f);
@@ -51,7 +63,7 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
                 fclose(f);
                 hookEndScene();
                 while (1) {
-                    //csgo::loopHacks();
+                    csgo::cheatTickloophacks();
                     if (GetAsyncKeyState(0x39)) {
                         DetourRemove((PBYTE)pEndScene, (PBYTE)hookedEndScene);
                         break;

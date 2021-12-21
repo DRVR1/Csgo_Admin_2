@@ -72,6 +72,12 @@
     <ClInclude Include="my headers\gamefunctions.h">
       <Filter>Header Files\my headers\hacks logic</Filter>
     </ClInclude>
+    <ClInclude Include="my headers\esp.h">
+      <Filter>Header Files\my headers\hacks logic</Filter>
+    </ClInclude>
+    <ClInclude Include="my headers\worldtoscreen.h">
+      <Filter>Header Files\my headers\hacks logic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libraries\include\imgui\imgui_tables.cpp">

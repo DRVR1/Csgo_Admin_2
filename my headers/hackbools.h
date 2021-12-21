@@ -22,25 +22,24 @@ namespace hackbools { //hackoptions
     namespace aimbot {
         int toggleKey = 0x12;
         int speed = 1;
-        int sleepTime = 1;
-        bool aimtrhoughwall = false;
+        int newspeed = 10;
         bool aimbothack = false;
         bool targetTeam = false;
-        bool targetSight = true;
         float fov = 100;
         float fovAccuracy = 400;
         float fovcolor[4] = {0,0,255,255};
         int selectedbodypart = 3;
         int bodypart = 5;
-        bool bfov = true;
+        bool bfov = false;
         bool drawfov = false;
         bool yawonly = false;
-        bool autosettings = false;
+        bool smoothaim = true;
+        bool findnewtarget = true;
 
         namespace oscillation {
             int antiOscillator = 5;
             bool canDraw = false;
-            bool drawOscillator = false;
+            bool drawOscillator = true;
         }
 
         //debug shit
@@ -55,6 +54,7 @@ namespace hackbools { //hackoptions
             int health = 0;
             int iterator = 0;
             int reached = 0;
+            int distanceToY = 0;
         }
 
     }

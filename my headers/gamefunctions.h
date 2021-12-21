@@ -6,11 +6,12 @@
 #include <conio.h>
 #include <stdio.h>
 
-
+int wait;
 namespace gamefunc {
 
     void acceptmatch() {
         void(*acceptmatch)() = (void(*)())(offset::function::autoAccept);
-        acceptmatch();
+        wait++;
+        if (wait == 2000) { acceptmatch(); wait = 0; }
     }
 }
