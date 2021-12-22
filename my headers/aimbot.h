@@ -108,7 +108,7 @@ void aimbot() {
                                 midDistance = abs(midDistance);
                                 hackbools::aimbot::debug::distanceToY = midDistance;
 
-                                if (midDistance < 25) { hackbools::aimbot::speed = 0; }
+                                if (midDistance < hackbools::aimbot::oscillation::antiOscillator) { hackbools::aimbot::speed = 0; }
                             }
 
 

@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "helper2.h"
+#include "dxdraw.h"
 
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
@@ -22,6 +23,8 @@ endScene pEndScene;
 LPD3DXFONT font;
 
 WNDPROC oWndProc;
+
+
 
 //configs ------------------------------------------------------------------------------------------------
 const char targetName[] = "Counter-Strike: Global Offensive - Direct3D 9";
@@ -51,6 +54,8 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
     csgo::gametickloopHacks();
+    //DrawLine(pDevice, templine::a, templine::b, templine::c, D3DCOLOR_ARGB(0, 0, 0, 0));
+    //DrawLine2(pDevice,templine::a, templine::b, templine::c, templine::d, templine::e, templine::thebool, D3DCOLOR_ARGB(0, 0, 0, 0));
     
     if (hackbools::init) {
         HWND newhandler = FindWindowA(NULL, targetName);
@@ -157,7 +162,6 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
                 ImGui::Checkbox("Switch target after kill",&hackbools::aimbot::findnewtarget);
                 ImGui::Checkbox("Smooth", &hackbools::aimbot::smoothaim);
                 ImGui::SliderInt("Smooth speed", &hackbools::aimbot::newspeed, 0, 18);
-                //ImGui::SliderInt("Speed", &hackbools::aimbot::speed,0,10);
                 ImGui::Checkbox("Draw target", &hackbools::aimbot::oscillation::drawOscillator);
                 ImGui::SliderInt("Target size", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
                 ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);
@@ -188,6 +192,10 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
             ImGui::EndTabItem();
         }
+        if (ImGui::BeginTabItem("Visuals")) {
+            if (ImGui::Checkbox("ESP line", &hackbools::triggerbot::triggerbothack)) {}
+            ImGui::EndTabItem();
+        }
     }
     if (hackbools::aimbot::debug::debugmode) {
         ImGui::Begin("debug", nullptr, ImGuiWindowFlags_NoCollapse);
@@ -207,29 +215,11 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
         ImGui::Text("Distance to Y center: %d", hackbools::aimbot::debug::distanceToY);
 
 
+
     }
-    if (hackbools::aimbot::drawfov) {
-        ImGui::Begin("fovDraw", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | 
-            ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | 
-            ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar);
-        auto draw = ImGui::GetBackgroundDrawList();
-        ImVec4 newfovcolor; //(first create a vector4 with the float colors then convert that vector into ImU32)
-        newfovcolor.x = hackbools::aimbot::fovcolor[0];
-        newfovcolor.y = hackbools::aimbot::fovcolor[1];
-        newfovcolor.z = hackbools::aimbot::fovcolor[2];
-        newfovcolor.w = hackbools::aimbot::fovcolor[3];
-        ImU32 newfovcolor2 = ImGui::ColorConvertFloat4ToU32(newfovcolor);
-        draw->AddCircle(ImVec2(xhairx, xhairy), hackbools::aimbot::fov, newfovcolor2, 100, 1.0f);
-        ImGui::End();
-    }
-    if (hackbools::aimbot::oscillation::drawOscillator && hackbools::aimbot::oscillation::canDraw) {
-        ImGui::Begin("OscillatorDraw", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground |
-            ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar |
-            ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar);
-        auto draw = ImGui::GetBackgroundDrawList();
-        draw->AddCircle(ImVec2(hackbools::aimbot::debug::gotoX, hackbools::aimbot::debug::gotoY), hackbools::aimbot::oscillation::antiOscillator, IM_COL32(255,0,0,255), 100, 1.0f);
-        ImGui::End();
-    }
+
+    anotherDraws();
+    
 
     ImGui::EndFrame();
     ImGui::Render();
@@ -238,6 +228,7 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
 
     return pEndScene(pDevice); // call original endScene 
 }
+
 
 void hookEndScene() {
     IDirect3D9* pD3D = Direct3DCreate9(D3D_SDK_VERSION); // create IDirect3D9 object

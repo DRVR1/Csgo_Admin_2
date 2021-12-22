@@ -25,11 +25,11 @@
     <Filter Include="Header Files\my headers\Offsets">
       <UniqueIdentifier>{ca592fdc-6816-46d2-a202-dfe54468c095}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\my headers\imgui">
-      <UniqueIdentifier>{2a942da8-5d46-40ce-9d26-5b63255736b5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\my headers\hacks logic">
       <UniqueIdentifier>{7bedab49-3ea9-4794-9add-c33835b02d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\my headers\overlay and config">
+      <UniqueIdentifier>{2a942da8-5d46-40ce-9d26-5b63255736b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -46,10 +46,10 @@
       <Filter>Header Files\my headers\Offsets</Filter>
     </ClInclude>
     <ClInclude Include="my headers\helper2.h">
-      <Filter>Header Files\my headers\imgui</Filter>
+      <Filter>Header Files\my headers\overlay and config</Filter>
     </ClInclude>
     <ClInclude Include="my headers\internaloverlay.h">
-      <Filter>Header Files\my headers\imgui</Filter>
+      <Filter>Header Files\my headers\overlay and config</Filter>
     </ClInclude>
     <ClInclude Include="my headers\helper.h">
       <Filter>Header Files\my headers\hacks logic</Filter>
@@ -61,7 +61,7 @@
       <Filter>Header Files\my headers\hacks logic</Filter>
     </ClInclude>
     <ClInclude Include="my headers\hackbools.h">
-      <Filter>Header Files\my headers\imgui</Filter>
+      <Filter>Header Files\my headers\overlay and config</Filter>
     </ClInclude>
     <ClInclude Include="my headers\readOffsetAddress.h">
       <Filter>Header Files\my headers\Signature Scanner</Filter>
@@ -77,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="my headers\worldtoscreen.h">
       <Filter>Header Files\my headers\hacks logic</Filter>
+    </ClInclude>
+    <ClInclude Include="my headers\dxdraw.h">
+      <Filter>Header Files\my headers\overlay and config</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

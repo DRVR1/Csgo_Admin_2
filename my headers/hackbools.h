@@ -64,6 +64,11 @@ namespace hackbools { //hackoptions
         bool targetTeam = false;
         
     }
+
+    namespace visuals {
+        bool espline = false;
+    
+    }
    
 }
 namespace offsetload {

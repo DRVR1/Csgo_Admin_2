@@ -1,8 +1,37 @@
-﻿  Generating code
-  0 of 1653 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+﻿  dllmain.cpp
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\worldtoscreen.h(29,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(41,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(41,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(74,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(74,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(81,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(82,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(83,52): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(107,49): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(140,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(143,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(143,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(31,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(31,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(38,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(38,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(38,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(38,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(52,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(52,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_dx9.cpp
+  imgui_impl_win32.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  Generating code
+  2 of 1655 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    24 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-detours.lib(detours.obj) : warning LNK4099: PDB '' was not found with 'detours.lib(detours.obj)' or at ''; linking object as if no debug info
+detours.lib(detours.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(detours.obj)' or at 'D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\Release\detours.pdb'; linking object as if no debug info
 detours.lib(disasm.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(disasm.obj)' or at 'D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\Release\detours.pdb'; linking object as if no debug info
   test19.vcxproj -> D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\Release\test19.dll
