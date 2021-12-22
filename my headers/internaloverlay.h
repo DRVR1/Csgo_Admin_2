@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "helper2.h"
-#include "dxdraw.h"
+#include "anotherdraws.h"
 
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
@@ -157,18 +157,26 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
             if (ImGui::BeginTabItem("Aimbot")) {
                 ImGui::Checkbox("Aimbot", &hackbools::aimbot::aimbothack);
                 ImGui::Combo("Body part", &hackbools::aimbot::selectedbodypart, bodypart.data(), bodypart.size());
-                ImGui::Checkbox("Aim to teammates (autoenabled in FFA)", &hackbools::aimbot::targetTeam);
+                ImGui::Checkbox("Target teammates",&hackbools::aimbot::targetTeam);
                 ImGui::Checkbox("Yaw only", &hackbools::aimbot::yawonly);
                 ImGui::Checkbox("Switch target after kill",&hackbools::aimbot::findnewtarget);
                 ImGui::Checkbox("Smooth", &hackbools::aimbot::smoothaim);
-                ImGui::SliderInt("Smooth speed", &hackbools::aimbot::newspeed, 0, 18);
+                if (hackbools::aimbot::smoothaim) {
+                    ImGui::SliderInt("Smooth speed", &hackbools::aimbot::newspeed, 0, 18);
+                }
                 ImGui::Checkbox("Draw target", &hackbools::aimbot::oscillation::drawOscillator);
-                ImGui::SliderInt("Target size", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
+                if (hackbools::aimbot::oscillation::drawOscillator) {
+                    ImGui::ColorEdit4("Target color", hackbools::aimbot::oscillation::oscillatorcolor);
+                    ImGui::SliderInt("Target size", &hackbools::aimbot::oscillation::antiOscillator, 1, 35);
+                }
                 ImGui::Checkbox("Use fov", &hackbools::aimbot::bfov);
-                ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov);
-                ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy);
-                ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 800);
-                ImGui::ColorEdit4("Fov color", hackbools::aimbot::fovcolor);
+                if (hackbools::aimbot::bfov) {
+                    ImGui::Checkbox("DrawFov", &hackbools::aimbot::drawfov);
+                    ImGui::SliderFloat("Fov", &hackbools::aimbot::fov, 1, hackbools::aimbot::fovAccuracy);
+                    ImGui::SliderFloat("Fov range", &hackbools::aimbot::fovAccuracy, 1, 800);
+                    ImGui::ColorEdit4("Fov color", hackbools::aimbot::fovcolor);
+                }
+
                 ImGui::Checkbox("Debug mode", &hackbools::aimbot::debug::debugmode);
                 
                 
@@ -193,7 +201,14 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
             ImGui::EndTabItem();
         }
         if (ImGui::BeginTabItem("Visuals")) {
-            if (ImGui::Checkbox("ESP line", &hackbools::triggerbot::triggerbothack)) {}
+            ImGui::Checkbox("ESP line", &hackbools::visuals::esp::espline);
+            if (hackbools::visuals::esp::espline) {
+                ImGui::ColorEdit4("Esp line enemy", hackbools::visuals::esp::esplinecolorteam);
+                ImGui::ColorEdit4("Esp line ally", hackbools::visuals::esp::esplinecolorenemy);
+                ImGui::SliderFloat("Esp line tickness", &hackbools::visuals::esp::tickness, 1, 4);
+
+            }
+                
             ImGui::EndTabItem();
         }
     }
@@ -219,7 +234,7 @@ HRESULT __stdcall hookedEndScene(IDirect3DDevice9* pDevice) {
     }
 
     anotherDraws();
-    
+
 
     ImGui::EndFrame();
     ImGui::Render();

@@ -37,6 +37,7 @@ namespace hackbools { //hackoptions
         bool findnewtarget = true;
 
         namespace oscillation {
+            float oscillatorcolor[4] = { 0,0,255,255 };
             int antiOscillator = 5;
             bool canDraw = false;
             bool drawOscillator = true;
@@ -66,8 +67,13 @@ namespace hackbools { //hackoptions
     }
 
     namespace visuals {
-        bool espline = false;
-    
+        namespace esp {
+            bool espline = false;
+            float esplinecolorteam[4] = { 0,0,255,255 };
+            float esplinecolorenemy[4] = { 255,0,0,255 };
+            float tickness = 1;
+        }
+        
     }
    
 }

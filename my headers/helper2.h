@@ -7,8 +7,6 @@
 namespace csgo {
     void gametickloopHacks() {
 
-
-
         //========================|triggerbot|================================
         if (hackbools::triggerbot::triggerbothack) { action::triggerBot(); }
         //========================|aimbot|================================
@@ -88,5 +86,6 @@ namespace csgo {
         if (!hackbools::flashbangHack) {
             localplayer::setflashbangAlpha(255);
         }
+
     }
 }

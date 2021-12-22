@@ -5,6 +5,8 @@
 #include "aimbot.h"
 #include "hackbools.h"
 
+#include "esp.h"
+
 
 namespace action {
 
@@ -78,6 +80,10 @@ namespace action {
     }
     void aimbotheader() {
         aimbot();
+    }
+
+    void esplineheader() {
+        espline();
     }
 
 

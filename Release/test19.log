@@ -11,25 +11,21 @@ D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(1
 D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(140,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(143,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\aimbot.h(143,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(31,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(31,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(38,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(38,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(38,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(38,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(52,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(52,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  imgui.cpp
-  imgui_demo.cpp
-  imgui_draw.cpp
-  imgui_impl_dx9.cpp
-  imgui_impl_win32.cpp
-  imgui_tables.cpp
-  imgui_widgets.cpp
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(16,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(16,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(16,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(22,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(22,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(22,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\dxdraw.h(22,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\esp.h(37,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\esp.h(37,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\esp.h(40,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\esp.h(40,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\my headers\anotherdraws.h(16,55): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Generating code
-  2 of 1655 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
+  1 of 1658 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
     24 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 detours.lib(detours.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(detours.obj)' or at 'D:\Todo NO BORRAR\Proyectos\vs c++\Pruebas\test20 csgotest\Release\detours.pdb'; linking object as if no debug info

@@ -81,6 +81,9 @@
     <ClInclude Include="my headers\dxdraw.h">
       <Filter>Header Files\my headers\overlay and config</Filter>
     </ClInclude>
+    <ClInclude Include="my headers\anotherdraws.h">
+      <Filter>Header Files\my headers\overlay and config</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libraries\include\imgui\imgui_tables.cpp">
