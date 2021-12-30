@@ -2,7 +2,7 @@
 
 namespace hackbools { //hackoptions
     //offsets
-    bool csgoUpdated = false;
+    bool csgoUpdated = true;
 
     //menu
     bool menuVisible = true;

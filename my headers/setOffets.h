@@ -9,7 +9,7 @@ char clientmodule[] = "client.dll";
 char enginemodule[] = "engine.dll";
 
 
-DWORD sub = 0x2000; //subs from offset to make a bigger search zone
+DWORD sub = 0x200; //subs from offset to make a bigger search zone
 
 bool stablishOffsets() {
 
@@ -22,6 +22,7 @@ bool stablishOffsets() {
 	offset::EntityList = findpattern(true, true, (0x402C2D - sub), offsetload::offset[0], 2, 0x10, clientmodule, "\x8B\x88\x00\x00\x00\x00\x85\xC9\x74\x42\x8B\x01\xFF\x50\x00\x8B\xF8\x85\xFF\x74\x37\x8B\x17\x8B\xCF\x8B\x92\x00\x00\x00\x00\xFF\xD2\x84\xC0\x74\x27", "xx????xxxxxxxx?xxxxxxxxxxxx????xxxxxx");
 	if (offset::EntityList == errorCode) { return false; }
 
+
 	offset::PlayerBase = findpattern(true, true, (0x2AC7A9 - sub), offsetload::offset[1], 3, 4, clientmodule, "\x8D\x34\x85\x00\x00\x00\x00\x89\x15\x00\x00\x00\x00\x8B\x41\x08\x8B\x48\x04\x83\xF9\xFF", "xxx????xx????xxxxxxxxx");
 	if (offset::PlayerBase == errorCode) { return false; }
 
@@ -33,7 +34,7 @@ bool stablishOffsets() {
 
 	base::isMenuOpenBase = findpattern(false, true, (0x47B3F8 - sub), offsetload::offset[4], 1, 0, clientmodule, "\xA1\x00\x00\x00\x00\x32\xD2\xB9\x00\x00\x00\x00\x89\x55\xF8\x8B\x40\x74\xFF\xD0", "x????xxx????xxxxxxxx");
 	if (base::isMenuOpenBase == errorCode) { return false; }
-
+	
 	// + engine.dll
 	offset::ClientState = findpattern(true, true, (0xB6E7B - sub), offsetload::offset[5], 1, 0, enginemodule, "\xA1\x00\x00\x00\x00\x33\xD2\x6A\x00\x6A\x00\x33\xC9\x89\xB0", "x????xxxxxxxxxx");
 	if (offset::ClientState == errorCode) { return false; }
@@ -58,7 +59,7 @@ bool stablishOffsets() {
 
 	offset::isSpotted = findpattern(false, true, (0x1aab3f - sub), offsetload::offset[11], 3, 0, clientmodule, "\x85\x94\x81\x00\x00\x00\x00\x0F\x95\xC0\x84\xC0\x75\x21\x8B\x7D\x08\x83\xC7\x10", "xxx????xxxxxxxxxxxxx");
 	if (offset::isSpotted == errorCode) { return false; }
-
+	
 
 	// + ClientState
 	offset::dwClientState_GetLocalPlayer = findpattern(false, true, (0xE000B - sub), offsetload::offset[12], 2, 0, enginemodule, "\x8B\x80\x00\x00\x00\x00\x40\x5D\xC2\x04\x00\x83\xC8\xFF\x5D", "xx????xxxxxxxxx");
@@ -71,6 +72,10 @@ bool stablishOffsets() {
 	// + client.dll
 	offset::function::autoAccept = findpattern(false, false, (0x5CDE60 - sub), offsetload::offset[14], 0, 0, clientmodule, "\x55\x8B\xEC\x83\xE4\xF8\x8B\x4D\x08\xBA\x00\x00\x00\x00\xE8\x00\x00\x00\x00\x85\xC0\x75\x12", "xxxxxxxxxx????x????xxxx");
 	if (offset::function::autoAccept == errorCode) { return false; }
+
+	offset::ViewMatrix = findpattern(true, true, (0x218072), offsetload::offset[15], 3, 0xB0, clientmodule, "\x0F\x10\x05\x00\x00\x00\x00\x8D\x85\x00\x00\x00\x00\xB9", "xxx????xx????x");
+	if (offset::ViewMatrix == errorCode) { return false; }
+
 
 	//===================|setting things that require the offsets|====================
 	module::client = (DWORD)GetModuleHandle(clientmodule);

@@ -14,7 +14,7 @@ namespace offset {
 	DWORD PlayerBase = 0x0; // dwLocalPlayer dword
 	DWORD ForceJump = 0x0; //dwForceJump  byte 04||05
 	DWORD ForceShoot = 0x0;
-	DWORD ViewMatrix = 0x4DC1394;
+	DWORD ViewMatrix = 0x0;
 
 	// + engine.dll
 	DWORD ClientState = 0x0; //dword dwClientState
