@@ -6,4 +6,4 @@ currently not working after csgo updated and i have no time to maintain it. This
 
 I was going to sell this cheat, but im working alone and it requires a lot of time and effort (website, anti-reversing, anti-detection, customer service, payments management, adding features, learning how the game works at a low level). You can use this code as you wish!
 
-Now this is free code and you can learn from it, copy the imgui menu, grab offsets, look how the headers were organized... idk maybe you find something useful for your cheat... any questions you have just ask them! GOOD LUCK HACKER! 
+Now this is free code and you can learn from it, copy the imgui menu, grab offsets, look how the headers were organized... idk maybe you find something useful for your cheat... any questions you have just ask them!
