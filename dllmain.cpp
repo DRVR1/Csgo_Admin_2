@@ -30,28 +30,6 @@ DWORD WINAPI MainActivity(HMODULE hModule) {
     FILE* f;
     freopen_s(&f, "CONOUT$", "w", stdout);
 
-    //stablishOffsets();
-    //void(*caca)(const char*) = (void(*)(const char*))offset::function::autoAccept;
-    //system("color a");
-    //printf("continue?\n");
-    //system("pause");
-
-    //int lol = 0;
-    //while (1) {
-    //    if (GetAsyncKeyState(0x39) & 1) {
-    //        break;
-    //    }
-    //    if (GetAsyncKeyState(0x31) & 1) {
-    //        printf("exec %d\n",lol);
-    //        lol++;
-    //        caca("a");
-    //        
-    //    }
-    //}
-
-    //FreeConsole();
-    //fclose(f);
-    //FreeLibraryAndExitThread(hModule, 0);
 
 
             system("color b"); 
