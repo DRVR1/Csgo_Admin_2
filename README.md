@@ -1,7 +1,5 @@
 # csgo admin 2
 
-for new users: not working!!!
-
 ![CAP](https://i.imgur.com/LTe11zu.png)
 
 
