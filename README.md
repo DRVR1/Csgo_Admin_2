@@ -1,6 +1,6 @@
 # csgo admin 2
 
-![CAP](https://s12.gifyu.com/images/2023-04-22-19-04-13.gif)
+![CAP](https://i.imgur.com/7qeZUMj.mp4)
 
 
 ## internal cheat for csgo
