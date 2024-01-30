@@ -1,4 +1,6 @@
-# csgo admin 2
+# Csgo Admin 2 - Internal Cheat
+
+## WARNING: Since it's unmantained, it may not work as expected, or even will get you banned. 
 
 ![CAP](https://i.imgur.com/LTe11zu.png)
 
