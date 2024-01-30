@@ -2,14 +2,14 @@
 
 ## WARNING: Since it's unmantained, it may not work as expected, or even will get you banned. 
 
--Integrated pattern scanning
+-Integrated pattern scanning<br>
 
--Aimbot <br>
--Triggerbot
--Radar hack
--Flashbang hack
--Esp
--Bunny hop
+-Aimbot<br>
+-Triggerbot<br>
+-Radar hack<br>
+-Flashbang hack<br>
+-Esp<br>
+-Bunny hop<br>
 
 ![CAP](https://i.imgur.com/LTe11zu.png)
 
