@@ -1,6 +1,6 @@
 # Csgo Admin 2 - Internal Cheat
 
-## WARNING: Since it's unmantained, it may not work as expected, or even will get you banned. 
+## ⚠️WARNING: Since it's unmantained, it may not work as expected, or even will get you banned. ⚠️
 
 ### Features:<br>
 -Integrated pattern scanning<br>
