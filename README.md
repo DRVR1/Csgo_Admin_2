@@ -4,7 +4,7 @@
 
 -Integrated pattern scanning
 
--Aimbot
+-Aimbot <br>
 -Triggerbot
 -Radar hack
 -Flashbang hack
