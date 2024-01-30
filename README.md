@@ -2,8 +2,8 @@
 
 ## WARNING: Since it's unmantained, it may not work as expected, or even will get you banned. 
 
+###Features:<br>
 -Integrated pattern scanning<br>
-
 -Aimbot<br>
 -Triggerbot<br>
 -Radar hack<br>
